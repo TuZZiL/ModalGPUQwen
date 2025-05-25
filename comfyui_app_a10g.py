@@ -93,7 +93,7 @@ app = modal.App(name="comfyui", image=image)
     timeout=1800,
     gpu="a10g",
     volumes={DATA_ROOT: vol},
-    secrets=[modal.Secret.from_name("hf-token"), modal.Secret.from_name("civitai-token")]
+    # secrets=[modal.Secret.from_name("hf-token"), modal.Secret.from_name("civitai-token")]
 )
 @modal.concurrent(max_inputs=10)
 @modal.web_server(8000, startup_timeout=60)
