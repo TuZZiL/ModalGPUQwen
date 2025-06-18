@@ -46,7 +46,7 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0")
     .run_commands([
-        "pip install --upgrade pip comfy-cli==1.3.6 uv",
+        "pip install --upgrade pip comfy-cli uv",
         "uv pip install --system --compile-bytecode huggingface_hub[hf_transfer]==0.28.1",
         # Install ComfyUI to default location
         "comfy --skip-prompt install --nvidia"
