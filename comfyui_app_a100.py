@@ -276,5 +276,3 @@ def ui():
         cwd=DATA_BASE,
         env=os.environ.copy()
     )
-    
-    process.wait()
