@@ -74,7 +74,7 @@ flux_model_tasks = [
 qwen_model_tasks = [
     # Main Qwen-Image-Edit model - в підпапці split_files/diffusion_models
     ("diffusion_models", "qwen_image_edit_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
-    
+    ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
     
