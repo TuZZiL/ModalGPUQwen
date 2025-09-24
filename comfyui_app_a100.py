@@ -70,16 +70,25 @@ flux_model_tasks = [
     ("vae/FLUX", "ae.safetensors", "ffxvs/vae-flux", None),
 ]
 
-# Qwen-Image-Edit Model download tasks (NEW)
+# Qwen-Image-Edit Model download tasks (CORRECTED PATHS)
 qwen_model_tasks = [
-    ("diffusion_models", "qwen_image_edit_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", None),
-    ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", None),
-    ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", None),
-    ("loras", "Qwen-Image-Lightning-4steps-V1.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
-    ("loras", "Qwen-Image-Lightning-8steps-V1.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
+    # Main Qwen-Image-Edit model - в підпапці split_files/diffusion_models
+    ("diffusion_models", "qwen_image_edit_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
+    
+    # Text encoder - в головній папці Qwen-Image_ComfyUI
+    ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
+    
+    # VAE model - в головній папці Qwen-Image_ComfyUI  
+    ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
+    
+    # Lightning LoRA models
+    ("loras", "Qwen-Image-Lightning-4steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
+    ("loras", "Qwen-Image-Lightning-8steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
+    
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
 ]
+
 
 # Combine all model tasks
 model_tasks = flux_model_tasks + qwen_model_tasks
