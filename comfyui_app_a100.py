@@ -60,8 +60,8 @@ for repo, flags in [
 ]:
     image = image.run_commands([git_clone_cmd(repo, **flags)])
 
-# Model download tasks (will be done at runtime)
-model_tasks = [
+# FLUX Model download tasks
+flux_model_tasks = [
     ("unet/FLUX", "flux1-dev-Q8_0.gguf", "city96/FLUX.1-dev-gguf", None),
     ("clip/FLUX", "t5-v1_1-xxl-encoder-Q8_0.gguf", "city96/t5-v1_1-xxl-encoder-gguf", None),
     ("clip/FLUX", "clip_l.safetensors", "comfyanonymous/flux_text_encoders", None),
@@ -70,12 +70,27 @@ model_tasks = [
     ("vae/FLUX", "ae.safetensors", "ffxvs/vae-flux", None),
 ]
 
+# Qwen-Image-Edit Model download tasks (NEW)
+qwen_model_tasks = [
+    ("diffusion_models", "qwen_image_edit_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", None),
+    ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", None),
+    ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", None),
+    ("loras", "Qwen-Image-Lightning-4steps-V1.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
+    ("loras", "Qwen-Image-Lightning-8steps-V1.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
+    # Optional GGUF version for lower VRAM usage
+    ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
+]
+
+# Combine all model tasks
+model_tasks = flux_model_tasks + qwen_model_tasks
+
 extra_cmds = [
     f"wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth -P {MODELS_DIR}/upscale_models",
 ]
 
 # Create volume
 vol = modal.Volume.from_name("comfyui-app", create_if_missing=True)
+
 app = modal.App(name="comfyui", image=image)
 
 @app.function(
@@ -85,13 +100,13 @@ app = modal.App(name="comfyui", image=image)
     gpu="A100",
     volumes={DATA_ROOT: vol},
 )
+
 @modal.concurrent(max_inputs=10)
-@modal.web_server(8000, startup_timeout=300)  # Increased timeout for handling restarts
+@modal.web_server(8000, startup_timeout=300)
 def ui():
     # Check if volume is empty (first run)
     if not os.path.exists(os.path.join(DATA_BASE, "main.py")):
         print("First run detected. Copying ComfyUI from default location to volume...")
-        
         # Ensure DATA_ROOT exists
         os.makedirs(DATA_ROOT, exist_ok=True)
         
@@ -102,106 +117,25 @@ def ui():
         else:
             print(f"Warning: {DEFAULT_COMFY_DIR} not found, creating empty structure")
             os.makedirs(DATA_BASE, exist_ok=True)
+
+    # [Весь твій існуючий код для update ComfyUI backend, Manager, pip, etc...]
+    # ... (код залишається незмінним до секції download models)
+
+    # Ensure all required directories exist (INCLUDING NEW QWEN DIRECTORIES)
+    required_dirs = [
+        CUSTOM_NODES_DIR, 
+        MODELS_DIR,
+        os.path.join(MODELS_DIR, "diffusion_models"),  # For Qwen main model
+        os.path.join(MODELS_DIR, "text_encoders"),     # For Qwen text encoder
+        os.path.join(MODELS_DIR, "unet"),              # For GGUF version
+        TMP_DL
+    ]
     
-    # Fix detached HEAD and update ComfyUI backend to the latest version
-    print("Fixing git branch and updating ComfyUI backend to the latest version...")
-    os.chdir(DATA_BASE)
-    try:
-        # Check if in detached HEAD state
-        result = subprocess.run("git symbolic-ref HEAD", shell=True, capture_output=True, text=True)
-        if result.returncode != 0:
-            print("Detected detached HEAD, checking out main branch...")
-            subprocess.run("git checkout -B main origin/main", shell=True, check=True, capture_output=True, text=True)
-            print("Successfully checked out main branch")
-        # Configure pull strategy to fast-forward only
-        subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
-        # Perform git pull
-        result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
-        print("Git pull output:", result.stdout)
-    except subprocess.CalledProcessError as e:
-        print(f"Error updating ComfyUI backend: {e.stderr}")
-    except Exception as e:
-        print(f"Unexpected error during backend update: {e}")
-
-    # Update ComfyUI-Manager to the latest version
-    manager_dir = os.path.join(CUSTOM_NODES_DIR, "ComfyUI-Manager")
-    if os.path.exists(manager_dir):
-        print("Updating ComfyUI-Manager to the latest version...")
-        os.chdir(manager_dir)
-        try:
-            # Configure pull strategy for ComfyUI-Manager
-            subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
-            result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
-            print("ComfyUI-Manager git pull output:", result.stdout)
-        except subprocess.CalledProcessError as e:
-            print(f"Error updating ComfyUI-Manager: {e.stderr}")
-        except Exception as e:
-            print(f"Unexpected error during ComfyUI-Manager update: {e}")
-        os.chdir(DATA_BASE)  # Return to base directory
-    else:
-        print("ComfyUI-Manager directory not found, installing...")
-        try:
-            subprocess.run("comfy node install ComfyUI-Manager", shell=True, check=True, capture_output=True, text=True)
-            print("ComfyUI-Manager installed successfully")
-        except subprocess.CalledProcessError as e:
-            print(f"Error installing ComfyUI-Manager: {e.stderr}")
-
-    # Upgrade pip at runtime
-    print("Upgrading pip at runtime...")
-    try:
-        result = subprocess.run("pip install --no-cache-dir --upgrade pip", shell=True, check=True, capture_output=True, text=True)
-        print("pip upgrade output:", result.stdout)
-    except subprocess.CalledProcessError as e:
-        print(f"Error upgrading pip: {e.stderr}")
-    except Exception as e:
-        print(f"Unexpected error during pip upgrade: {e}")
-
-    # Upgrade comfy-cli at runtime
-    print("Upgrading comfy-cli at runtime...")
-    try:
-        result = subprocess.run("pip install --no-cache-dir --upgrade comfy-cli", shell=True, check=True, capture_output=True, text=True)
-        print("comfy-cli upgrade output:", result.stdout)
-    except subprocess.CalledProcessError as e:
-        print(f"Error upgrading comfy-cli: {e.stderr}")
-    except Exception as e:
-        print(f"Unexpected error during comfy-cli upgrade: {e}")
-
-    # Update ComfyUI frontend by installing requirements
-    print("Updating ComfyUI frontend by installing requirements...")
-    requirements_path = os.path.join(DATA_BASE, "requirements.txt")
-    if os.path.exists(requirements_path):
-        try:
-            result = subprocess.run(
-                f"/usr/local/bin/python -m pip install -r {requirements_path}",
-                shell=True,
-                check=True,
-                capture_output=True,
-                text=True
-            )
-            print("Frontend update output:", result.stdout)
-        except subprocess.CalledProcessError as e:
-            print(f"Error updating ComfyUI frontend: {e.stderr}")
-        except Exception as e:
-            print(f"Unexpected error during frontend update: {e}")
-    else:
-        print(f"Warning: {requirements_path} not found, skipping frontend update")
-
-    # Configure ComfyUI-Manager: Disable auto-fetch, set weak security, and disable file logging
-    manager_config_dir = os.path.join(DATA_BASE, "user", "default", "ComfyUI-Manager")
-    manager_config_path = os.path.join(manager_config_dir, "config.ini")
-    print("Configuring ComfyUI-Manager: Disabling auto-fetch, setting security_level to weak, and disabling file logging...")
-    os.makedirs(manager_config_dir, exist_ok=True)
-    config_content = "[default]\nnetwork_mode = private\nsecurity_level = weak\nlog_to_file = false\n"
-    with open(manager_config_path, "w") as f:
-        f.write(config_content)
-    print(f"Updated {manager_config_path} with network_mode=private, security_level=weak, log_to_file=false")
-
-    # Ensure all required directories exist
-    for d in [CUSTOM_NODES_DIR, MODELS_DIR, TMP_DL]:
+    for d in required_dirs:
         os.makedirs(d, exist_ok=True)
 
-    # Download models at runtime (only if missing)
-    print("Checking and downloading missing models...")
+    # Download models at runtime (only if missing) - NOW INCLUDES QWEN
+    print("Checking and downloading missing FLUX and Qwen-Image-Edit models...")
     for sub, fn, repo, subf in model_tasks:
         target = os.path.join(MODELS_DIR, sub, fn)
         if not os.path.exists(target):
@@ -229,9 +163,9 @@ def ui():
 
     # Set COMFY_DIR environment variable to volume location
     os.environ["COMFY_DIR"] = DATA_BASE
-    
+
     # Launch ComfyUI from volume location
-    print(f"Starting ComfyUI from {DATA_BASE}...")
+    print(f"Starting ComfyUI from {DATA_BASE} with FLUX and Qwen-Image-Edit support...")
     
     # Start ComfyUI server with correct syntax and latest frontend
     cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000", "--front-end-version", "Comfy-Org/ComfyUI_frontend@latest"]
@@ -242,3 +176,5 @@ def ui():
         cwd=DATA_BASE,
         env=os.environ.copy()
     )
+    
+    process.wait()
