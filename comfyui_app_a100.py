@@ -1,4 +1,3 @@
-
 import os
 import shutil
 import subprocess
@@ -31,22 +30,15 @@ def hf_download(subdir: str, filename: str, repo_id: str, subfolder: Optional[st
     os.makedirs(target, exist_ok=True)
     shutil.move(out, os.path.join(target, filename))
 
-# def civitai_download(subdir: str, filename: str, url: str) -> str:
-#     return (
-#         f"comfy --skip-prompt model download --url '{url}'"
-#         f" --relative-path 'models/{subdir}'"
-#         f" --filename '{filename}'"
-#         f" --set-civitai-api-token $CIVITAI_API_TOKEN"
-#     )
-
 import modal
 
 # Build image with ComfyUI installed to default location /root/comfy/ComfyUI
 image = (
     modal.Image.debian_slim(python_version="3.12")
-    .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0")
+    .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg")
     .run_commands([
-        "pip install --upgrade pip comfy-cli uv",
+        "pip install --upgrade pip",
+        "pip install --no-cache-dir comfy-cli uv",
         "uv pip install --system --compile-bytecode huggingface_hub[hf_transfer]==0.28.1",
         # Install ComfyUI to default location
         "comfy --skip-prompt install --nvidia"
@@ -80,7 +72,6 @@ model_tasks = [
 
 extra_cmds = [
     f"wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth -P {MODELS_DIR}/upscale_models",
-#     civitai_download("upscale_models", "4xUltrasharp_4xUltrasharpV10.pt", "https://civitai.com/api/download/models/125843?type=Model&format=PickleTensor")
 ]
 
 # Create volume
@@ -89,14 +80,13 @@ app = modal.App(name="comfyui", image=image)
 
 @app.function(
     max_containers=1,
-    scaledown_window=30,
+    scaledown_window=300,
     timeout=1800,
     gpu="A100",
     volumes={DATA_ROOT: vol},
-    # secrets=[modal.Secret.from_name("hf-token"), modal.Secret.from_name("civitai-token")]
 )
 @modal.concurrent(max_inputs=10)
-@modal.web_server(8000, startup_timeout=60)
+@modal.web_server(8000, startup_timeout=300)  # Increased timeout for handling restarts
 def ui():
     # Check if volume is empty (first run)
     if not os.path.exists(os.path.join(DATA_BASE, "main.py")):
@@ -112,24 +102,103 @@ def ui():
         else:
             print(f"Warning: {DEFAULT_COMFY_DIR} not found, creating empty structure")
             os.makedirs(DATA_BASE, exist_ok=True)
-    else:
-        print("Volume already initialized, using existing ComfyUI installation")
     
+    # Fix detached HEAD and update ComfyUI backend to the latest version
+    print("Fixing git branch and updating ComfyUI backend to the latest version...")
+    os.chdir(DATA_BASE)
+    try:
+        # Check if in detached HEAD state
+        result = subprocess.run("git symbolic-ref HEAD", shell=True, capture_output=True, text=True)
+        if result.returncode != 0:
+            print("Detected detached HEAD, checking out main branch...")
+            subprocess.run("git checkout -B main origin/main", shell=True, check=True, capture_output=True, text=True)
+            print("Successfully checked out main branch")
+        # Configure pull strategy to fast-forward only
+        subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
+        # Perform git pull
+        result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
+        print("Git pull output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error updating ComfyUI backend: {e.stderr}")
+    except Exception as e:
+        print(f"Unexpected error during backend update: {e}")
+
+    # Update ComfyUI-Manager to the latest version
+    manager_dir = os.path.join(CUSTOM_NODES_DIR, "ComfyUI-Manager")
+    if os.path.exists(manager_dir):
+        print("Updating ComfyUI-Manager to the latest version...")
+        os.chdir(manager_dir)
+        try:
+            # Configure pull strategy for ComfyUI-Manager
+            subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
+            result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
+            print("ComfyUI-Manager git pull output:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Error updating ComfyUI-Manager: {e.stderr}")
+        except Exception as e:
+            print(f"Unexpected error during ComfyUI-Manager update: {e}")
+        os.chdir(DATA_BASE)  # Return to base directory
+    else:
+        print("ComfyUI-Manager directory not found, installing...")
+        try:
+            subprocess.run("comfy node install ComfyUI-Manager", shell=True, check=True, capture_output=True, text=True)
+            print("ComfyUI-Manager installed successfully")
+        except subprocess.CalledProcessError as e:
+            print(f"Error installing ComfyUI-Manager: {e.stderr}")
+
+    # Upgrade pip at runtime
+    print("Upgrading pip at runtime...")
+    try:
+        result = subprocess.run("pip install --no-cache-dir --upgrade pip", shell=True, check=True, capture_output=True, text=True)
+        print("pip upgrade output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error upgrading pip: {e.stderr}")
+    except Exception as e:
+        print(f"Unexpected error during pip upgrade: {e}")
+
+    # Upgrade comfy-cli at runtime
+    print("Upgrading comfy-cli at runtime...")
+    try:
+        result = subprocess.run("pip install --no-cache-dir --upgrade comfy-cli", shell=True, check=True, capture_output=True, text=True)
+        print("comfy-cli upgrade output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error upgrading comfy-cli: {e.stderr}")
+    except Exception as e:
+        print(f"Unexpected error during comfy-cli upgrade: {e}")
+
+    # Update ComfyUI frontend by installing requirements
+    print("Updating ComfyUI frontend by installing requirements...")
+    requirements_path = os.path.join(DATA_BASE, "requirements.txt")
+    if os.path.exists(requirements_path):
+        try:
+            result = subprocess.run(
+                f"/usr/local/bin/python -m pip install -r {requirements_path}",
+                shell=True,
+                check=True,
+                capture_output=True,
+                text=True
+            )
+            print("Frontend update output:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Error updating ComfyUI frontend: {e.stderr}")
+        except Exception as e:
+            print(f"Unexpected error during frontend update: {e}")
+    else:
+        print(f"Warning: {requirements_path} not found, skipping frontend update")
+
+    # Configure ComfyUI-Manager: Disable auto-fetch, set weak security, and disable file logging
+    manager_config_dir = os.path.join(DATA_BASE, "user", "default", "ComfyUI-Manager")
+    manager_config_path = os.path.join(manager_config_dir, "config.ini")
+    print("Configuring ComfyUI-Manager: Disabling auto-fetch, setting security_level to weak, and disabling file logging...")
+    os.makedirs(manager_config_dir, exist_ok=True)
+    config_content = "[default]\nnetwork_mode = private\nsecurity_level = weak\nlog_to_file = false\n"
+    with open(manager_config_path, "w") as f:
+        f.write(config_content)
+    print(f"Updated {manager_config_path} with network_mode=private, security_level=weak, log_to_file=false")
+
     # Ensure all required directories exist
     for d in [CUSTOM_NODES_DIR, MODELS_DIR, TMP_DL]:
         os.makedirs(d, exist_ok=True)
-
-    # Set environment variables for secrets
-#     hf_token = os.getenv("HF_API_TOKEN")
-#     civ_token = os.getenv("CIVITAI_API_TOKEN")
-    
-#     if hf_token:
-#         os.environ["HF_API_TOKEN"] = hf_token
-#         print("HF token configured")
-    
-#     if civ_token:
-#         os.environ["CIVITAI_API_TOKEN"] = civ_token
-#         print("Civitai token configured")
 
     # Download models at runtime (only if missing)
     print("Checking and downloading missing models...")
@@ -164,11 +233,8 @@ def ui():
     # Launch ComfyUI from volume location
     print(f"Starting ComfyUI from {DATA_BASE}...")
     
-    # Change to ComfyUI directory and launch
-    os.chdir(DATA_BASE)
-    
-    # Start ComfyUI server with correct syntax
-    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000"]
+    # Start ComfyUI server with correct syntax and latest frontend
+    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000", "--front-end-version", "Comfy-Org/ComfyUI_frontend@latest"]
     print(f"Executing: {' '.join(cmd)}")
     
     process = subprocess.Popen(
