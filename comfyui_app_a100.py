@@ -90,6 +90,10 @@ qwen_model_tasks = [
     # Додаткові Qwen LoRA моделі з HuggingFace
     ("loras", "qwen-studio-realism.safetensors", "prithivMLmods/Qwen-Image-Studio-Realism", None),
     ("loras", "qwen_image_nsfw.safetensors", "starsfriday/Qwen-Image-NSFW", None),
+    ("loras", "2111206_removeclothing_qwen-edit.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "bumpynipples1_qwen.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "qwen_image_edit_%2520mannequin-clipper_v1.0.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "qwen_image_edit_remove-clothing_v1.0.safetensors", "andrewwe/qwLoras", None),
 
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
