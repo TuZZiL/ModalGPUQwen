@@ -92,9 +92,16 @@ qwen_model_tasks = [
     ("loras", "qwen_image_nsfw.safetensors", "starsfriday/Qwen-Image-NSFW", None),
     ("loras", "2111206_removeclothing_qwen-edit.safetensors", "andrewwe/qwLoras", None),
     ("loras", "bumpynipples1_qwen.safetensors", "andrewwe/qwLoras", None),
-    ("loras", "qwen_image_edit_%2520mannequin-clipper_v1.0.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "qwen_image_edmannequin-clipper_v1.0.safetensors", "andrewwe/qwLoras", None),
     ("loras", "qwen_image_edit_remove-clothing_v1.0.safetensors", "andrewwe/qwLoras", None),
-
+    ("loras", "2114841_qwen_edit_nsfw.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Facial_Cumshots_For_Qwen_Image_V1.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "2066568_qwen_edit_uncenudify_lora_v3.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Putithere_Qwen edit_V2.0.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "QWEN_JTitsT2_5.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Qwen-Image-Edit-Lowres-Fix.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "pose_transfer_v2_qwen_edit.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "qwenOUTFITootd_colour-19-3600.safetensors", "andrewwe/qwLoras", None),
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
 ]
