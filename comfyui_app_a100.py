@@ -101,6 +101,7 @@ qwen_model_tasks = [
     ("loras", "QWEN_JTitsT2_5.safetensors", "andrewwe/qwLoras", None),
     ("loras", "Qwen-Image-Edit-Lowres-Fix.safetensors", "andrewwe/qwLoras", None),
     ("loras", "pose_transfer_v2_qwen_edit.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "p0ssy_lora_v1qwenedit.safetensors", "andrewwe/qwLoras", None),
     ("loras", "qwenOUTFITootd_colour-19-3600.safetensors", "andrewwe/qwLoras", None),
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
