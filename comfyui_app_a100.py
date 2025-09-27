@@ -78,7 +78,8 @@ qwen_model_tasks = [
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
     ("text_encoders", "Qwen2.5-VL-7B-Abliterated-Caption-it.Q6_K.gguf", "mradermacher/Qwen2.5-VL-7B-Abliterated-Caption-it-GGUF", None),
-    ("text_encoders", "Qwen2.5-VL-7B-Instruct-abliterated.mmproj-Q8_0.gguf", "mradermacher/Qwen2.5-VL-7B-Abliterated-Caption-it-GGUF", None),
+    ("text_encoders", "Qwen2.5-VL-7B-Instruct-abliterated.mmproj-Q8_0.gguf", "mradermacher/Qwen2.5-VL-7B-Instruct-abliterated-GGUF", None),
+    ("text_encoders", "Qwen2.5-VL-7B-Abliterated-Caption-it.mmproj-Q8_0.gguf", "mradermacher/Qwen2.5-VL-7B-Abliterated-Caption-it-GGUF", None),
     # VAE model - в головній папці Qwen-Image_ComfyUI  
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     
