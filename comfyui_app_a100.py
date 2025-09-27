@@ -77,7 +77,8 @@ qwen_model_tasks = [
     ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
-    
+    ("text_encoders", "Qwen2.5-VL-7B-Abliterated-Caption-it.Q6_K.gguf", "mradermacher/Qwen2.5-VL-7B-Abliterated-Caption-it-GGUF", None),
+
     # VAE model - в головній папці Qwen-Image_ComfyUI  
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     
@@ -102,7 +103,16 @@ qwen_model_tasks = [
     ("loras", "Qwen-Image-Edit-Lowres-Fix.safetensors", "andrewwe/qwLoras", None),
     ("loras", "pose_transfer_v2_qwen_edit.safetensors", "andrewwe/qwLoras", None),
     ("loras", "p0ssy_lora_v1qwenedit.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "consistence_edit_v1.safetensors", "andrewwe/qwLoras", None),
     ("loras", "qwenOUTFITootd_colour-19-3600.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "InSubject-0.5.safetensors", "peteromallet/Qwen-Image-Edit-InSubject", None),
+    ("loras", "qwen-edit-remover.safetensors", "starsfriday/Qwen-Image-Edit-Remover-General-LoRA", None),
+    ("loras", "InStyle-0.5.safetensors", "peteromallet/Qwen-Image-Edit-InStyle", None),
+    ("loras", "consistence_edit_v1.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "milk_juggs_QWEN.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "muscle_women_QWEN.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "qwen-image-edit-2509-inscene-lora.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "qwen_image_snapchat.safetensors", "andrewwe/qwLoras", None),
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
 ]
