@@ -113,6 +113,16 @@ qwen_model_tasks = [
     ("loras", "muscle_women_QWEN.safetensors", "andrewwe/qwLoras", None),
     ("loras", "qwen-image-edit-2509-inscene-lora.safetensors", "andrewwe/qwLoras", None),
     ("loras", "qwen_image_snapchat.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Lora_Qwen-Real_perfect_sex.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "breast_slider_qwen_v1.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "hips_size_slider_v1qwen.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "detailz_qwen_000024000.safetensors", "andrewwe/qwLoras", None),
+    # LoRA-файли з wiikoo/Qwen-lora-nsfw
+    ("loras", "[QWEN] Send Nudes Pro - Beta v1.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
+    ("loras", "reclining_nude_v1_000003500.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
+    ("loras", "consistence_edit_v2.safetensors", "wiikoo/Qwen-lora-nsfw", "loras2"),
+    ("loras", "qwen_snofs.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
+
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
 ]
