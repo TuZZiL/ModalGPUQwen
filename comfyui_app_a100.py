@@ -118,6 +118,7 @@ qwen_model_tasks = [
     ("loras", "Lora_Qwen-Real_perfect_sex.safetensors", "andrewwe/qwLoras", None),
     ("loras", "breast_slider_qwen_v1.safetensors", "andrewwe/qwLoras", None),
     ("loras", "hips_size_slider_v1qwen.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "QWEN_ed_removed_my2.safetensors", "andrewwe/qwLoras", None),
     ("loras", "detailz_qwen_000024000.safetensors", "andrewwe/qwLoras", None),
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
     ("loras", "[QWEN] Send Nudes Pro - Beta v1.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
