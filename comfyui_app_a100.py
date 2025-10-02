@@ -109,6 +109,8 @@ qwen_model_tasks = [
     ("loras", "qwen-edit-remover.safetensors", "starsfriday/Qwen-Image-Edit-Remover-General-LoRA", None),
     ("loras", "InStyle-0.5.safetensors", "peteromallet/Qwen-Image-Edit-InStyle", None),
     ("loras", "consistence_edit_v1.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "QWEN_ed_removed_my1.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "QWEN_ed_removed_my1_000001500.safetensors", "andrewwe/qwLoras", None),
     ("loras", "milk_juggs_QWEN.safetensors", "andrewwe/qwLoras", None),
     ("loras", "muscle_women_QWEN.safetensors", "andrewwe/qwLoras", None),
     ("loras", "qwen-image-edit-2509-inscene-lora.safetensors", "andrewwe/qwLoras", None),
