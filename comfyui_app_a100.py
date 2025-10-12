@@ -87,7 +87,7 @@ qwen_model_tasks = [
     ("loras", "Qwen-Image-Lightning-8steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Lightning-4steps-V2.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Lightning-8steps-V2.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
-    ("loras", "Qwen-Image-Lightning-8steps-V2.0-bf16.safetensors", "JustAnotherCibrarian/base_kuato", "1854805/2235536"),
+    ("loras", "Qwen-Image-Edit-2509-Lightning-8steps-V1.0-fp32.safetensors", "andrewwe/qwLoras", None),
 
     # Додаткові Qwen LoRA моделі з HuggingFace
     ("loras", "qwen-studio-realism.safetensors", "prithivMLmods/Qwen-Image-Studio-Realism", None),
@@ -121,11 +121,10 @@ qwen_model_tasks = [
     ("loras", "hips_size_slider_v1qwen.safetensors", "andrewwe/qwLoras", None),
     ("loras", "QWEN_ed_removed_my2.safetensors", "andrewwe/qwLoras", None),
     ("loras", "QwennBustyLoraMy.safetensors", "andrewwe/qwLoras", None),
-    ("loras", "Insta-Girls_QWEN_v2.safetensors", "JustAnotherCibrarian/base_kuato", "1539088/2232120"),
-    ("loras", "Accelerator-QwenImage-Lightning-8steps-PAseer.safetensors", "JustAnotherCibrarian/base_kuato", "1989991/2252607"),
-    ("loras", "big_nipples_QWEN.safetensors", "JustAnotherCibrarian/base_kuato", "1908710/2187794"),
-    ("loras", "the cleavage.safetensors", "JustAnotherCibrarian/base_kuato", "1961533/2220274"),
-    ("loras", "editpicforpartV1-2.0.safetensors", "JustAnotherCibrarian/base_kuato", "1961696/2240739"),
+    ("loras", "the20cleavage_qwen.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "editpicforpartV1-2.0.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "big_nipples_QWEN.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Accelerator-QwenImage-Lightning-8steps-PAseer.safetensors", "andrewwe/qwLoras", None),
     ("loras", "next-scene_lora_v1-3000qwen.safetensors", "andrewwe/qwLoras", None),
     ("loras", "detailz_qwen_000024000.safetensors", "andrewwe/qwLoras", None),
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
