@@ -133,7 +133,9 @@ qwen_model_tasks = [
     ("loras", "Qwen-MysticXXX-v1.safetensors", "andrewwe/qwLoras", None),
     ("loras", "Qwen-iPhone-V1.1.safetensors", "andrewwe/qwLoras", None),
     ("loras", "Samsung.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Qwen-Image_SmartphonePhotoReality_v4_TRIGGERamateur photo.safetensors", "andrewwe/qwLoras", None),
     ("loras", "flymy_realism.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "film_still.safetensors", "andrewwe/qwLoras", None),
     ("loras", "detailz_qwen_000024000.safetensors", "andrewwe/qwLoras", None),
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
     ("loras", "[QWEN] Send Nudes Pro - Beta v1.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
