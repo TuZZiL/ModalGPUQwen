@@ -74,7 +74,7 @@ qwen_model_tasks = [
     # Main Qwen-Image-Edit model - в підпапці split_files/diffusion_models
     ("diffusion_models", "qwen_image_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/diffusion_models"),
     ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
-    ("diffusion_models", "Real-Qwen-Image-V1-fp8.safetensors", "wikeeyang/Real-Qwen-Image-v1.0", None),
+    ("diffusion_models", "qwen_image_edit_meitu_fp8_e4m3fn.safetensors", "valiantcat/Qwen-Image-Edit-MeiTu", None),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
     # VAE model - в головній папці Qwen-Image_ComfyUI  
@@ -135,6 +135,9 @@ qwen_model_tasks = [
     ("loras", "Samsung.safetensors", "andrewwe/qwLoras", None),
     ("loras", "Qwen-Image_SmartphonePhotoReality_v4_TRIGGERamateur photo.safetensors", "andrewwe/qwLoras", None),
     ("loras", "flymy_realism.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "1GIRL_QWEN_V3.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Edit-R1-Qwen-Image-Edit-2509.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "next-scene_lora-v2-3000.safetensors", "andrewwe/qwLoras", None),
     ("loras", "film_still.safetensors", "andrewwe/qwLoras", None),
     ("loras", "detailz_qwen_000024000.safetensors", "andrewwe/qwLoras", None),
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
@@ -164,7 +167,7 @@ app = modal.App(name="comfyui", image=image)
     max_containers=1,
     scaledown_window=300,
     timeout=1800,
-    gpu="A10G",
+    gpu="L40S",
     volumes={DATA_ROOT: vol},
 )
 @modal.concurrent(max_inputs=10)
