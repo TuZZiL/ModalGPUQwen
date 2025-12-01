@@ -77,8 +77,9 @@ qwen_model_tasks = [
     ("diffusion_models", "z_image_turbo_bf16.safetensors", "Comfy-Org/z_image_turbo", "split_files/diffusion_models"),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
-    ("llm", "Josiefied-Qwen3-8B-abliterated-v1.Q8_0.gguf", "mradermacher/Josiefied-Qwen3-8B-abliterated-v1-GGUF", ""),
+    ("text_encoders", "Josiefied-Qwen3-8B-abliterated-v1.Q8_0.gguf", "mradermacher/Josiefied-Qwen3-8B-abliterated-v1-GGUF", ""),
     ("text_encoders", "qwen_3_4b.safetensors", "Comfy-Org/z_image_turbo", "split_files/text_encoders"),
+    ("text_encoders", "qwen-4b-zimage-heretic-q8.gguf", "Lockout/qwen3-4b-heretic-zimage", None),
 
     # VAE model - в головній папці Qwen-Image_ComfyUI  
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
