@@ -74,11 +74,15 @@ qwen_model_tasks = [
     # Main Qwen-Image-Edit model - в підпапці split_files/diffusion_models
     ("diffusion_models", "qwen_image_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/diffusion_models"),
     ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
-    ("diffusion_models", "qwen_image_edit_meitu_fp8_e4m3fn.safetensors", "valiantcat/Qwen-Image-Edit-MeiTu", None),
+    ("diffusion_models", "z_image_turbo_bf16.safetensors", "Comfy-Org/z_image_turbo", "split_files/diffusion_models"),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
+    ("llm", "Josiefied-Qwen3-8B-abliterated-v1.Q8_0.gguf", "mradermacher/Josiefied-Qwen3-8B-abliterated-v1-GGUF", ""),
+    ("text_encoders", "qwen_3_4b.safetensors", "Comfy-Org/z_image_turbo", "split_files/text_encoders"),
+
     # VAE model - в головній папці Qwen-Image_ComfyUI  
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
+    ("vae", "ae.safetensors", "Comfy-Org/z_image_turbo", "split_files/vae"),
     
     # Lightning LoRA models
     ("loras", "Qwen-Image-Lightning-4steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
@@ -140,6 +144,15 @@ qwen_model_tasks = [
     ("loras", "next-scene_lora-v2-3000.safetensors", "andrewwe/qwLoras", None),
     ("loras", "film_still.safetensors", "andrewwe/qwLoras", None),
     ("loras", "detailz_qwen_000024000.safetensors", "andrewwe/qwLoras", None),
+    ("loras/Zit", "BystyMega_b8nk.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "MariaBody_000001500.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "b3tternud3s_v2.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "big-nipples.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "bustywoman_bs9ex.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "christina_ch6tina.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "girls_zimage_g5r4l.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "girls_zimage_g5r4l_000001500.safetensors", "andrewwe/zitLoras", None),
+
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
     ("loras", "[QWEN] Send Nudes Pro - Beta v1.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
     ("loras", "reclining_nude_v1_000003500.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
