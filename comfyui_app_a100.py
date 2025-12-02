@@ -3,6 +3,7 @@ import shutil
 import subprocess
 from typing import Optional
 from huggingface_hub import hf_hub_download
+import modal
 
 # Paths
 DATA_ROOT = "/data/comfy"
@@ -30,12 +31,12 @@ def hf_download(subdir: str, filename: str, repo_id: str, subfolder: Optional[st
     os.makedirs(target, exist_ok=True)
     shutil.move(out, os.path.join(target, filename))
 
-import modal
-
 # Build image with ComfyUI installed to default location /root/comfy/ComfyUI
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg")
+    # 👇 ВИПРАВЛЕННЯ: Додано необхідні бібліотеки для кастомних нод
+    .pip_install("psd-tools", "PyWavelets", "tiktoken")
     .run_commands([
         "pip install --upgrade pip",
         "pip install --no-cache-dir comfy-cli uv",
