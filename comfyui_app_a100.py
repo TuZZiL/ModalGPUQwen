@@ -153,6 +153,13 @@ qwen_model_tasks = [
     ("loras/Zit", "bustywoman_bs9ex.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "christina_ch6tina.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "girls_zimage_g5r4l.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "BigNatsv2.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "EuropeanGirls.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "ZImage_CockShock.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "ZPenisHelper.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "psxAM_v1_ZITamateurLora.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "z_image_turbo_ukgirl.safetensors", "andrewwe/zitLoras", None),
+
     ("loras/Zit", "girls_zimage_g5r4l_000001500.safetensors", "andrewwe/zitLoras", None),
 
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
