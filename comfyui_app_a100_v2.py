@@ -161,6 +161,7 @@ qwen_model_tasks = [
     ("loras/Zit", "z_image_turbo_ukgirl.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "zimage_luisanudism2.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "reverse_cgirl_zitv3.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "hugepeniszimagev14000.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "girls_zimage_g5r4l_000001500.safetensors", "andrewwe/zitLoras", None),
 
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
