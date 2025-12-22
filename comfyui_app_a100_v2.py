@@ -166,7 +166,10 @@ qwen_model_tasks = [
     ("loras/Zit", "Hendricks_ZIT_000002400.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "Hendricks_ZIT_000002700.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "Hendricks_ZIT.safetensors", "andrewwe/zitLoras", None),
-    ("loras/Zit", "girls_zimage_g5r4l_000001500.safetensors", "andrewwe/zitLoras", None), 
+    ("loras/Zit", "girls_zimage_g5r4l_000001500.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "b3tternud3s_v3.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "amateur_photography_zimage_v1.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "The_Body_Version_A_ZIT.safetensors", "andrewwe/zitLoras", None), 
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
 
     ("loras", "[QWEN] Send Nudes Pro - Beta v1.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
