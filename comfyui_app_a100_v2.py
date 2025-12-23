@@ -76,6 +76,7 @@ qwen_model_tasks = [
     ("diffusion_models", "qwen_image_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/diffusion_models"),
     ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
     ("diffusion_models", "qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning.safetensors", "lightx2v/Qwen-Image-Edit-2511-Lightning", None),
+    ("diffusion_models", "qwen_image_edit_2511_fp8_e4m3fn.safetensors", "xms991/Qwen-Image-Edit-2511-fp8-e4m3fn", None),
     ("diffusion_models", "z_image_turbo_bf16.safetensors", "Comfy-Org/z_image_turbo", "split_files/diffusion_models"),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
