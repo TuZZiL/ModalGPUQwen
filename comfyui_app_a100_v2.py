@@ -182,6 +182,7 @@ qwen_model_tasks = [
 
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
+    ("unet", "qwen-image-edit-2511-Q8_0.gguf", "unsloth/Qwen-Image-Edit-2511-GGUF", None),
 ]
 
 
