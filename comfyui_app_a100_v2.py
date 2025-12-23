@@ -188,7 +188,6 @@ model_tasks = flux_model_tasks + qwen_model_tasks
 
 extra_cmds = [
     f"wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth -P {MODELS_DIR}/upscale_models",
-    f'wget --max-redirect=10 --timeout=60 --tries=3 --continue --content-disposition -O {MODELS_DIR}/diffusion_models/DAF-ZIT.safetensors "https://civitai.com/api/download/models/2479247?type=Model&format=SafeTensor&size=full&fp=fp16" || curl --max-time 300 --retry 3 --retry-delay 5 -L -o {MODELS_DIR}/diffusion_models/DAF-ZIT.safetensors "https://civitai.com/api/download/models/2479247?type=Model&format=SafeTensor&size=full&fp=fp16"',
 ]
 
 # Create volume
