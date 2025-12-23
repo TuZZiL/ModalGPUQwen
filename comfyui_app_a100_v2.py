@@ -94,6 +94,7 @@ qwen_model_tasks = [
     ("loras", "Qwen-Image-Lightning-4steps-V2.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Lightning-8steps-V2.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Edit-2509-Lightning-8steps-V1.0-fp32.safetensors", "andrewwe/qwLoras", None),
+    ("loras", "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-fp32.safetensors", "lightx2v/Qwen-Image-Edit-2511-Lightning", None),
 
     # Додаткові Qwen LoRA моделі з HuggingFace
     ("loras", "qwen-studio-realism.safetensors", "prithivMLmods/Qwen-Image-Studio-Realism", None),
