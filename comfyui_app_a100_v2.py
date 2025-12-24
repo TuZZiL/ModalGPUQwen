@@ -34,9 +34,9 @@ def hf_download(subdir: str, filename: str, repo_id: str, subfolder: Optional[st
 # Build image with ComfyUI installed to default location /root/comfy/ComfyUI
 image = (
     modal.Image.debian_slim(python_version="3.12")
-    .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg")
+    .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg", "imagemagick", "libmagickwand-dev")
     # 👇 ВИПРАВЛЕННЯ: Додано необхідні бібліотеки для кастомних нод
-    .pip_install("psd-tools", "PyWavelets", "tiktoken")
+    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand")
     .run_commands([
         "pip install --upgrade pip",
         "pip install --no-cache-dir comfy-cli uv",
@@ -58,6 +58,7 @@ for repo, flags in [
     ("welltop-cn/ComfyUI-TeaCache", {'install_reqs': True}),
     ("nkchocoai/ComfyUI-SaveImageWithMetaData", {}),
     ("receyuki/comfyui-prompt-reader-node", {'recursive': True, 'install_reqs': True}),
+    ("Fannovel16/ComfyUI-MagickWand", {'install_reqs': True}),
 ]:
     image = image.run_commands([git_clone_cmd(repo, **flags)])
 
