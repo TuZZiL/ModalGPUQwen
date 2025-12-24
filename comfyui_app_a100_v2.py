@@ -36,7 +36,7 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg", "imagemagick", "libmagickwand-dev")
     # 👇 ВИПРАВЛЕННЯ: Додано необхідні бібліотеки для кастомних нод
-    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand")
+    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf")
     .run_commands([
         "pip install --upgrade pip",
         "pip install --no-cache-dir comfy-cli uv",
@@ -59,6 +59,7 @@ for repo, flags in [
     ("nkchocoai/ComfyUI-SaveImageWithMetaData", {}),
     ("receyuki/comfyui-prompt-reader-node", {'recursive': True, 'install_reqs': True}),
     ("Fannovel16/ComfyUI-MagickWand", {'install_reqs': True}),
+    ("numz/ComfyUI-SeedVR2_VideoUpscaler", {'install_reqs': True}),
 ]:
     image = image.run_commands([git_clone_cmd(repo, **flags)])
 
@@ -184,6 +185,8 @@ qwen_model_tasks = [
     # Optional GGUF version for lower VRAM usage
     ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
     ("unet", "qwen-image-edit-2511-Q8_0.gguf", "unsloth/Qwen-Image-Edit-2511-GGUF", None),
+    # SeedVR2 Upscaler Models
+    ("SEEDVR2", "seedvr2_ema_3b-Q4_K_M.gguf", "cmeka/SeedVR2-GGUF", None),
 ]
 
 
@@ -327,6 +330,7 @@ def ui():
         os.path.join(MODELS_DIR, "diffusion_models"),  # For Qwen main model
         os.path.join(MODELS_DIR, "text_encoders"),     # For Qwen text encoder
         os.path.join(MODELS_DIR, "unet"),              # For GGUF version
+        os.path.join(MODELS_DIR, "SEEDVR2"),           # For SeedVR2 models
         TMP_DL
     ]
     
