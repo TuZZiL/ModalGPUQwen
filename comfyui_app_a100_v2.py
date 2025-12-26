@@ -176,14 +176,11 @@ qwen_model_tasks = [
     ("loras/Zit", "amateur_photography_zimage_v1.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "The_Body_Version_A_ZIT.safetensors", "andrewwe/zitLoras", None), 
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
-
-    ("loras", "[QWEN] Send Nudes Pro - Beta v1.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
     ("loras", "reclining_nude_v1_000003500.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
     ("loras", "consistence_edit_v2.safetensors", "wiikoo/Qwen-lora-nsfw", "loras2"),
     ("loras", "qwen_snofs.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
 
     # Optional GGUF version for lower VRAM usage
-    ("unet", "Q8_0.gguf", "QuantStack/Qwen-Image-Edit-2509-GGUF", None),
     ("unet", "qwen-image-edit-2511-Q8_0.gguf", "unsloth/Qwen-Image-Edit-2511-GGUF", None),
     # SeedVR2 Upscaler Models
     ("SEEDVR2", "seedvr2_ema_3b-Q4_K_M.gguf", "cmeka/SeedVR2-GGUF", None),
