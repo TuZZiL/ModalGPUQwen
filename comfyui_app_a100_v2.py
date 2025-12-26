@@ -187,6 +187,8 @@ qwen_model_tasks = [
     ("unet", "qwen-image-edit-2511-Q8_0.gguf", "unsloth/Qwen-Image-Edit-2511-GGUF", None),
     # SeedVR2 Upscaler Models
     ("SEEDVR2", "seedvr2_ema_3b-Q4_K_M.gguf", "cmeka/SeedVR2-GGUF", None),
+    # Qwen-Rapid-AIO-NSFW-v17
+    ("checkpoints", "Qwen-Rapid-AIO-NSFW-v17.safetensors", "Phr00t/Qwen-Image-Edit-Rapid-AIO", "v17"),
 ]
 
 
@@ -331,6 +333,7 @@ def ui():
         os.path.join(MODELS_DIR, "text_encoders"),     # For Qwen text encoder
         os.path.join(MODELS_DIR, "unet"),              # For GGUF version
         os.path.join(MODELS_DIR, "SEEDVR2"),           # For SeedVR2 models
+        os.path.join(MODELS_DIR, "checkpoints"),       # For Checkpoints
         TMP_DL
     ]
     
