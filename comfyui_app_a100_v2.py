@@ -75,7 +75,7 @@ flux_model_tasks = [
 # Qwen-Image-Edit Model download tasks (CORRECTED PATHS)
 qwen_model_tasks = [
     # Main Qwen-Image-Edit model - в підпапці split_files/diffusion_models
-    ("diffusion_models", "qwen_image_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/diffusion_models"),
+    ("diffusion_models", "Qwen-Image 2512_fp8_e5m2.safetensors", "art0123/Models_collection", "Qwen-Image-2512"),
     ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
     ("diffusion_models", "qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning.safetensors", "lightx2v/Qwen-Image-Edit-2511-Lightning", None),
     ("diffusion_models", "qwen_image_edit_2511_fp8_e4m3fn.safetensors", "xms991/Qwen-Image-Edit-2511-fp8-e4m3fn", None),
@@ -88,6 +88,7 @@ qwen_model_tasks = [
 
     # VAE model - в головній папці Qwen-Image_ComfyUI  
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
+    ("vae", "UltraFlux_vae.safetensors", "Owen777/UltraFlux-v1", "vae"),
     ("vae", "ae.safetensors", "Comfy-Org/z_image_turbo", "split_files/vae"),
     
     # Lightning LoRA models
@@ -95,10 +96,15 @@ qwen_model_tasks = [
     ("loras", "Qwen-Image-Lightning-8steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Lightning-4steps-V2.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Lightning-8steps-V2.0.safetensors", "lightx2v/Qwen-Image-Lightning", None),
+    ("loras", "Wuli-Qwen-Image-2512-Turbo-LoRA-4steps-V2.0-bf16.safetensors", "Wuli-art/Qwen-Image-2512-Turbo-LoRA", None),
+    ("loras", "Qwen-Image-2512-Lightning-4steps-V1.0-bf16.safetensors", "lightx2v/Qwen-Image-2512-Lightning", None),
     ("loras", "Qwen-Image-Edit-2509-Lightning-8steps-V1.0-fp32.safetensors", "andrewwe/qwLoras", None),
     ("loras", "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-fp32.safetensors", "lightx2v/Qwen-Image-Edit-2511-Lightning", None),
 
     # Додаткові Qwen LoRA моделі з HuggingFace
+    ("loras", "Famegrid_Qwen_Lora_Standard_V1.5_RealSkinFix.safetensors", "PetruZetta/famegrid_qwen_lora", None),
+    ("loras", "HMFemme_V1.safetensors", "bananas42/HMfemme", None),
+    ("loras", "2168252_remove clothes3000.safetensors", "amethyst9/2168252", None),
     ("loras", "qwen-studio-realism.safetensors", "prithivMLmods/Qwen-Image-Studio-Realism", None),
     ("loras", "qwen_image_nsfw.safetensors", "starsfriday/Qwen-Image-NSFW", None),
     ("loras", "2111206_removeclothing_qwen-edit.safetensors", "andrewwe/qwLoras", None),
