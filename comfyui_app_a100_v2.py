@@ -204,6 +204,7 @@ model_tasks = flux_model_tasks + qwen_model_tasks
 
 extra_cmds = [
     f"wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth -P {MODELS_DIR}/upscale_models",
+    f"if [ ! -f \"{MODELS_DIR}/loras/NSFW Female Enhancer Qwen V0.3.safetensors\" ]; then wget -L https://civitai.com/api/download/models/2559921 -O \"{MODELS_DIR}/loras/NSFW Female Enhancer Qwen V0.3.safetensors\"; fi",
 ]
 
 # Create volume
