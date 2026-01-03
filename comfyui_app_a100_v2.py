@@ -25,11 +25,12 @@ def git_clone_cmd(node_repo: str, recursive: bool = False, install_reqs: bool = 
         cmd += f" && pip install -r {dest}/requirements.txt"
     return cmd
 
-def hf_download(subdir: str, filename: str, repo_id: str, subfolder: Optional[str] = None):
+def hf_download(subdir: str, filename: str, repo_id: str, subfolder: Optional[str] = None, local_filename: Optional[str] = None):
     out = hf_hub_download(repo_id=repo_id, filename=filename, subfolder=subfolder, local_dir=TMP_DL)
     target = os.path.join(MODELS_DIR, subdir)
     os.makedirs(target, exist_ok=True)
-    shutil.move(out, os.path.join(target, filename))
+    target_name = local_filename if local_filename else filename
+    shutil.move(out, os.path.join(target, target_name))
 
 # Build image with ComfyUI installed to default location /root/comfy/ComfyUI
 image = (
@@ -185,7 +186,18 @@ qwen_model_tasks = [
     ("loras/Zit", "girls_zimage_g5r4l_000001500.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "b3tternud3s_v3.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "amateur_photography_zimage_v1.safetensors", "andrewwe/zitLoras", None),
-    ("loras/Zit", "The_Body_Version_A_ZIT.safetensors", "andrewwe/zitLoras", None), 
+    ("loras/Zit", "The_Body_Version_A_ZIT.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "loradivaMarina5.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "loradivaMarina7.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "loradivaMarina9.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "hbm_v3hbm_bs4_2000.safetensors", "JustAnotherCibrarian/base_acne", "2185997/2476946", "Huge_Breasts_Mixv3.safetensors"),
+    ("loras/Zit", "saggers_by_deedeemegadoodo_zimage_v1.safetensors", "UnifiedHorusRA/Theslicedbread2", "Sagging_Breasts_by_Deedeemegadoodo/ZImageTurbo"),
+    ("loras/Zit", "FemaleFacePortraitsDetailedSkin-ZImage.safetensors", "UnifiedHorusRA/Theslicedbread", "Female_-_Face_Portraits_-_Detailed_Skin_-_Z-Image/ZImageTurbo"),
+    ("loras/Zit", "RebelReal(z-image).safetensors", "JustAnotherCibrarian/base_acne", "2181922/2456892"),
+    ("loras/Zit", "SonyAlpha_ZImage.safetensors", "JustAnotherCibrarian/base_acne", "1174190/2485001"),
+    ("loras/Zit", "zit-m4crom4sti4-v5-deturbo-noadapt-21epoc-k3nk.safetensors", "JustAnotherCibrarian/base_acne", "2178807/2453498"),
+    ("loras/Zit", "Z-TURBO_Photography_35mmPhoto_1536.safetensors", "UnifiedHorusRA/Theslicedbread", "35mm_Photo_-_Flux_Z-Turbo/ZImageTurbo"),
+
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
     ("loras", "reclining_nude_v1_000003500.safetensors", "wiikoo/Qwen-lora-nsfw", "loras"),
     ("loras", "consistence_edit_v2.safetensors", "wiikoo/Qwen-lora-nsfw", "loras2"),
@@ -350,17 +362,22 @@ def ui():
 
     # Download models at runtime (only if missing) - NOW INCLUDES QWEN
     print("Checking and downloading missing FLUX and Qwen-Image-Edit models...")
-    for sub, fn, repo, subf in model_tasks:
-        target = os.path.join(MODELS_DIR, sub, fn)
+    for task in model_tasks:
+        sub, fn, repo, subf = task[:4]
+        local_fn = task[4] if len(task) > 4 else None
+        
+        display_name = local_fn if local_fn else fn
+        target = os.path.join(MODELS_DIR, sub, display_name)
+        
         if not os.path.exists(target):
-            print(f"Downloading {fn} to {target}...")
+            print(f"Downloading {fn} as {display_name} to {target}...")
             try:
-                hf_download(sub, fn, repo, subf)
-                print(f"Successfully downloaded {fn}")
+                hf_download(sub, fn, repo, subf, local_fn)
+                print(f"Successfully downloaded {display_name}")
             except Exception as e:
-                print(f"Error downloading {fn}: {e}")
+                print(f"Error downloading {display_name}: {e}")
         else:
-            print(f"Model {fn} already exists, skipping download")
+            print(f"Model {display_name} already exists, skipping download")
 
     # Run extra download commands
     print("Running additional downloads...")
