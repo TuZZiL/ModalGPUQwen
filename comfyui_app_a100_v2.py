@@ -228,7 +228,7 @@ app = modal.App(name="comfyui", image=image)
     max_containers=1,
     scaledown_window=300,
     timeout=1800,
-    gpu="A10",
+    gpu="L40S",
     volumes={DATA_ROOT: vol},
 )
 @modal.concurrent(max_inputs=10)
