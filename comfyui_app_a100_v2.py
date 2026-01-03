@@ -190,6 +190,8 @@ qwen_model_tasks = [
     ("loras/Zit", "loradivaMarina5.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "loradivaMarina7.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "loradivaMarina9.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "HQphoto_7.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "HQphoto_6.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "hbm_v3hbm_bs4_2000.safetensors", "JustAnotherCibrarian/base_acne", "2185997/2476946", "Huge_Breasts_Mixv3.safetensors"),
     ("loras/Zit", "saggers_by_deedeemegadoodo_zimage_v1.safetensors", "UnifiedHorusRA/Theslicedbread2", "Sagging_Breasts_by_Deedeemegadoodo/ZImageTurbo"),
     ("loras/Zit", "FemaleFacePortraitsDetailedSkin-ZImage.safetensors", "UnifiedHorusRA/Theslicedbread", "Female_-_Face_Portraits_-_Detailed_Skin_-_Z-Image/ZImageTurbo"),
