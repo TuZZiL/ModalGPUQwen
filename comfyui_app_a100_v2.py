@@ -161,6 +161,7 @@ qwen_model_tasks = [
     ("loras", "remove_clothing.safetensors", "TomaOmito/Qwen-Edit-2509-Lora-Remove-Clothing", None),
     ("loras", "Qwen-Image-Edit-Remove-Clothes_V.1.safetensors", "lingo/qwen-image-edit-fun-lora", None),
     ("loras", "eigen-banana-qwen-image-edit-2509-fp16-lora.safetensors", "eigen-ai-labs/eigen-banana-qwen-image-edit", None),
+    ("loras", "NSFW Female Enhancer Qwen V0.3.safetensors", "andrewwe/qwLoras", None),
     ("loras/Zit", "BystyMega_b8nk.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "MariaBody_000001500.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "b3tternud3s_v2.safetensors", "andrewwe/zitLoras", None),
@@ -204,7 +205,6 @@ model_tasks = flux_model_tasks + qwen_model_tasks
 
 extra_cmds = [
     f"wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth -P {MODELS_DIR}/upscale_models",
-    f"if [ ! -f \"{MODELS_DIR}/loras/NSFW Female Enhancer Qwen V0.3.safetensors\" ]; then wget -L https://civitai.com/api/download/models/2559921 -O \"{MODELS_DIR}/loras/NSFW Female Enhancer Qwen V0.3.safetensors\"; fi",
 ]
 
 # Create volume
