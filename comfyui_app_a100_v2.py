@@ -229,6 +229,7 @@ qwen_model_tasks = [
     ("loras/Zit", "loradivaMarina5.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "loradivaMarina7.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "loradivaMarina9.safetensors", "andrewwe/zitLoras", None),
+    ("loras/Zit", "myTeen10ep.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "HQphoto_7.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "HQphoto_6.safetensors", "andrewwe/zitLoras", None),
     ("loras/Zit", "HQphoto_8.safetensors", "andrewwe/zitLoras", None),
