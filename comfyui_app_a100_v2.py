@@ -25,12 +25,46 @@ def git_clone_cmd(node_repo: str, recursive: bool = False, install_reqs: bool = 
         cmd += f" && pip install -r {dest}/requirements.txt"
     return cmd
 
-def hf_download(subdir: str, filename: str, repo_id: str, subfolder: Optional[str] = None, local_filename: Optional[str] = None):
-    out = hf_hub_download(repo_id=repo_id, filename=filename, subfolder=subfolder, local_dir=TMP_DL)
-    target = os.path.join(MODELS_DIR, subdir)
-    os.makedirs(target, exist_ok=True)
+def download_model(subdir: str, filename: str, primary_source: dict, backup_source: Optional[dict] = None, local_filename: Optional[str] = None):
+    target_dir = os.path.join(MODELS_DIR, subdir)
+    os.makedirs(target_dir, exist_ok=True)
     target_name = local_filename if local_filename else filename
-    shutil.move(out, os.path.join(target, target_name))
+    target_path = os.path.join(target_dir, target_name)
+
+    if os.path.exists(target_path):
+        print(f"Model {target_name} already exists, skipping download.")
+        return
+
+    sources = [primary_source]
+    if backup_source:
+        sources.append(backup_source)
+
+    for i, source in enumerate(sources):
+        source_type = "Backup" if i > 0 else "Primary"
+        print(f"Attempting {source_type} download for {target_name}...")
+        try:
+            if "url" in source:
+                # Direct download (Civitai, etc.)
+                print(f"Downloading from URL: {source['url']}")
+                # Use wget for direct URLs
+                subprocess.run(f"wget -O {TMP_DL}/{filename} \"{source['url']}\"", shell=True, check=True)
+                shutil.move(f"{TMP_DL}/{filename}", target_path)
+            else:
+                # HF download
+                repo = source.get("repo_id")
+                subf = source.get("subfolder")
+                print(f"Downloading from HF: {repo}/{subf if subf else ''}")
+                out = hf_hub_download(repo_id=repo, filename=filename, subfolder=subf, local_dir=TMP_DL)
+                shutil.move(out, target_path)
+            
+            print(f"Successfully downloaded {target_name} from {source_type} source.")
+            return
+        except Exception as e:
+            print(f"Failed to download from {source_type} source: {e}")
+            if i == len(sources) - 1:
+                print(f"All sources failed for {target_name}")
+            else:
+                print("Trying next source...")
 
 # Build image with ComfyUI installed to default location /root/comfy/ComfyUI
 image = (
@@ -86,10 +120,15 @@ qwen_model_tasks = [
     ("text_encoders", "Josiefied-Qwen3-8B-abliterated-v1.Q8_0.gguf", "mradermacher/Josiefied-Qwen3-8B-abliterated-v1-GGUF", ""),
     ("text_encoders", "qwen_3_4b.safetensors", "Comfy-Org/z_image_turbo", "split_files/text_encoders"),
     ("text_encoders", "qwen-4b-zimage-heretic-q8.gguf", "Lockout/qwen3-4b-heretic-zimage", None),
+    {
+        "subdir": "text_encoders",
+        "filename": "qwen3_4b_thinking_2507.safetensors",
+        "primary": {"url": "https://civitai.com/api/download/models/2563867?type=Model&format=SafeTensor&size=full&fp=bf16"}
+    },
 
     # VAE model - в головній папці Qwen-Image_ComfyUI  
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
-    ("vae", "UltraFlux_vae.safetensors", "Owen777/UltraFlux-v1", "vae"),
+    ("vae", "diffusion_pytorch_model.safetensors", "Owen777/UltraFlux-v1", "vae", "UltraFlux_vae.safetensors"),
     ("vae", "ae.safetensors", "Comfy-Org/z_image_turbo", "split_files/vae"),
     
     # Lightning LoRA models
@@ -195,9 +234,10 @@ qwen_model_tasks = [
     ("loras/Zit", "hbm_v3hbm_bs4_2000.safetensors", "JustAnotherCibrarian/base_acne", "2185997/2476946", "Huge_Breasts_Mixv3.safetensors"),
     ("loras/Zit", "saggers_by_deedeemegadoodo_zimage_v1.safetensors", "UnifiedHorusRA/Theslicedbread2", "Sagging_Breasts_by_Deedeemegadoodo/ZImageTurbo"),
     ("loras/Zit", "FemaleFacePortraitsDetailedSkin-ZImage.safetensors", "UnifiedHorusRA/Theslicedbread", "Female_-_Face_Portraits_-_Detailed_Skin_-_Z-Image/ZImageTurbo"),
-    ("loras/Zit", "RebelReal(z-image).safetensors", "JustAnotherCibrarian/base_acne", "2181922/2456892"),
-    ("loras/Zit", "SonyAlpha_ZImage.safetensors", "JustAnotherCibrarian/base_acne", "1174190/2485001"),
-    ("loras/Zit", "zit-m4crom4sti4-v5-deturbo-noadapt-21epoc-k3nk.safetensors", "JustAnotherCibrarian/base_acne", "2178807/2453498"),
+    ("loras/Zit", "RebelReal(z-image).safetensors", "UnifiedHorusRA/Theslicedbread", "RebelReal_Z-Image/ZImageTurbo"),
+    ("loras/Zit", "SonyAlpha_ZImage.safetensors", "UnifiedHorusRA/Theslicedbread2", "Sony_Alpha_A7_III_Style/ZImageTurbo"),
+    ("loras/Zit", "zit-m4crom4sti4-v5-deturbo-noadapt-21epoc-k3nk.safetensors", "K3NK/loras-zimageturbo", None),
+    ("loras/Zit", "Reality Huge Breasts_p.safetensors", "UnifiedHorusRA/Theslicedbread", "Reality_Huge_Breasts_Z-image/ZImageTurbo"),
     ("loras/Zit", "Z-TURBO_Photography_35mmPhoto_1536.safetensors", "UnifiedHorusRA/Theslicedbread", "35mm_Photo_-_Flux_Z-Turbo/ZImageTurbo"),
 
     # LoRA-файли з wiikoo/Qwen-lora-nsfw
@@ -365,21 +405,29 @@ def ui():
     # Download models at runtime (only if missing) - NOW INCLUDES QWEN
     print("Checking and downloading missing FLUX and Qwen-Image-Edit models...")
     for task in model_tasks:
-        sub, fn, repo, subf = task[:4]
-        local_fn = task[4] if len(task) > 4 else None
-        
-        display_name = local_fn if local_fn else fn
-        target = os.path.join(MODELS_DIR, sub, display_name)
-        
-        if not os.path.exists(target):
-            print(f"Downloading {fn} as {display_name} to {target}...")
-            try:
-                hf_download(sub, fn, repo, subf, local_fn)
-                print(f"Successfully downloaded {display_name}")
-            except Exception as e:
-                print(f"Error downloading {display_name}: {e}")
+        if isinstance(task, dict):
+            # New smart download format
+            download_model(
+                subdir=task["subdir"],
+                filename=task["filename"],
+                primary_source=task["primary"],
+                backup_source=task.get("backup"),
+                local_filename=task.get("local_filename")
+            )
         else:
-            print(f"Model {display_name} already exists, skipping download")
+            # Legacy tuple format
+            sub, fn, repo, subf = task[:4]
+            local_fn = task[4] if len(task) > 4 else None
+            
+            display_name = local_fn if local_fn else fn
+            target = os.path.join(MODELS_DIR, sub, display_name)
+            
+            if not os.path.exists(target):
+                print(f"Downloading {fn} as {display_name} to {target}...")
+                primary = {"repo_id": repo, "subfolder": subf}
+                download_model(sub, fn, primary, local_filename=local_fn)
+            else:
+                print(f"Model {display_name} already exists, skipping download")
 
     # Run extra download commands
     print("Running additional downloads...")
