@@ -109,12 +109,14 @@ flux_model_tasks = [
 
 # Qwen-Image-Edit Model download tasks (CORRECTED PATHS)
 qwen_model_tasks = [
+    ("diffusion_models", "flux-2-klein-base-9b-fp8.safetensors", "black-forest-labs/FLUX.2-klein-base-9b-fp8", None),
     # Main Qwen-Image-Edit model - в підпапці split_files/diffusion_models
     ("diffusion_models", "Qwen-Image 2512_fp8_e5m2.safetensors", "art0123/Models_collection", "Qwen-Image-2512"),
     ("diffusion_models", "qwen_image_edit_2509_fp8_e4m3fn.safetensors", "Comfy-Org/Qwen-Image-Edit_ComfyUI", "split_files/diffusion_models"),
     ("diffusion_models", "qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning.safetensors", "lightx2v/Qwen-Image-Edit-2511-Lightning", None),
     ("diffusion_models", "qwen_image_edit_2511_fp8_e4m3fn.safetensors", "xms991/Qwen-Image-Edit-2511-fp8-e4m3fn", None),
     ("diffusion_models", "z_image_turbo_bf16.safetensors", "Comfy-Org/z_image_turbo", "split_files/diffusion_models"),
+    ("text_encoders", "qwen_3_8b_fp4mixed.safetensors", "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "split_files/text_encoders"),
     # Text encoder - в головній папці Qwen-Image_ComfyUI
     ("text_encoders", "qwen_2.5_vl_7b_fp8_scaled.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/text_encoders"),
     ("text_encoders", "Josiefied-Qwen3-8B-abliterated-v1.Q8_0.gguf", "mradermacher/Josiefied-Qwen3-8B-abliterated-v1-GGUF", ""),
@@ -127,10 +129,19 @@ qwen_model_tasks = [
     },
 
     # VAE model - в головній папці Qwen-Image_ComfyUI  
+    ("vae", "flux2-vae.safetensors", "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "split_files/vae"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     ("vae", "diffusion_pytorch_model.safetensors", "Owen777/UltraFlux-v1", "vae", "UltraFlux_vae.safetensors"),
     ("vae", "ae.safetensors", "Comfy-Org/z_image_turbo", "split_files/vae"),
     
+    # Flux 2 Klein LoRAs
+    ("loras/FLUX9bKlein", "The_Body_Version_A_Flux2.k.9B_r16_AdamW8Bit_Weighted_768_woman_000005000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "The_Body_Version_M_Flux.2.klein.9B.r16._000005000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "detail_slider_klein_9b_20260123_065513.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "f2_klein9b_macromastia_clothed.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "klein_slider_anatomy.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "nipplediffusion-f2-klein-9b.safetensors", "andrewwe/klein9bl", None),
+
     # Lightning LoRA models
     ("loras", "Qwen-Image-Lightning-4steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
     ("loras", "Qwen-Image-Lightning-8steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),
