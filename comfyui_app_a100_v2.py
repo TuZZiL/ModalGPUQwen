@@ -310,7 +310,8 @@ def ui():
         # Check if in detached HEAD state
         result = subprocess.run("git symbolic-ref HEAD", shell=True, capture_output=True, text=True)
         if result.returncode != 0:
-            print("Detected detached HEAD, checking out main branch...")
+            print("Detected detached HEAD, fetching and checking out main branch...")
+            subprocess.run("git fetch --all", shell=True, check=True, capture_output=True, text=True)
             subprocess.run("git checkout -B main origin/main", shell=True, check=True, capture_output=True, text=True)
             print("Successfully checked out main branch")
         
@@ -462,7 +463,7 @@ def ui():
     print(f"Starting ComfyUI from {DATA_BASE} with FLUX and Qwen-Image-Edit support...")
     
     # Start ComfyUI server with correct syntax and latest frontend
-    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000", "--front-end-version", "Comfy-Org/ComfyUI_frontend@latest"]
+    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000"]
     print(f"Executing: {' '.join(cmd)}")
     
     process = subprocess.Popen(
