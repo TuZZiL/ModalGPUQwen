@@ -101,6 +101,7 @@ for repo, flags in [
 # FLUX Model download tasks
 flux_model_tasks = [
     ("unet/FLUX", "flux1-dev-Q8_0.gguf", "city96/FLUX.1-dev-gguf", None),
+    ("unet/FLUX", "flux-2-klein-9b-Q8_0.gguf", "unsloth/FLUX.2-klein-9B-GGUF", None),
     ("clip/FLUX", "t5-v1_1-xxl-encoder-Q8_0.gguf", "city96/t5-v1_1-xxl-encoder-gguf", None),
     ("clip/FLUX", "clip_l.safetensors", "comfyanonymous/flux_text_encoders", None),
     ("loras", "mjV6.safetensors", "strangerzonehf/Flux-Midjourney-Mix2-LoRA", None),
