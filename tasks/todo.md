@@ -23,3 +23,4 @@ Summary
 - Switched the Colab notebook to download and deploy `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - Temporarily disabled the ComfyUI backend update in `v4` to diagnose the `comfy_aimdo` import crash without changing the rest of the flow.
 - The runtime probe showed `blake3` was missing in the image environment, so `blake3` and `comfy-aimdo` were added to the Modal build image.
+- Switched the runtime diagnostic from import-based checks to package-version checks for `blake3`, `comfy-aimdo`, `torch`, `torchvision`, and `torchaudio`.

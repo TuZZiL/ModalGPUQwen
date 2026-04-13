@@ -3,6 +3,7 @@ import os
 import shutil
 import subprocess
 import sys
+from importlib.metadata import PackageNotFoundError, version
 from typing import Optional
 from huggingface_hub import hf_hub_download
 import modal
@@ -204,26 +205,13 @@ def sync_frontend_requirements(requirements_path: str):
         handle.write(current_hash)
 
 
-def probe_runtime_module(module_name: str):
-    result = subprocess.run(
-        [sys.executable, "-c", f"import {module_name}; print({module_name}.__file__)"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if result.returncode == 0:
-        location = result.stdout.strip() or "<unknown>"
-        print(f"Runtime probe ok: {module_name} -> {location}")
-        return
-
-    stderr = result.stderr.strip() or result.stdout.strip() or "no output"
-    raise RuntimeError(f"Runtime probe failed for {module_name}: {stderr}")
-
-
 def probe_runtime_dependencies():
     print(f"Runtime python: {sys.executable}")
-    probe_runtime_module("blake3")
-    probe_runtime_module("comfy_aimdo")
+    for package_name in ("blake3", "comfy-aimdo", "torch", "torchvision", "torchaudio"):
+        try:
+            print(f"Runtime package: {package_name}={version(package_name)}")
+        except PackageNotFoundError:
+            print(f"Runtime package: {package_name}=MISSING")
 
 def download_model(subdir: str, filename: str, primary_source: dict, backup_source: Optional[dict] = None, local_filename: Optional[str] = None):
     target_dir = os.path.join(MODELS_DIR, subdir)
