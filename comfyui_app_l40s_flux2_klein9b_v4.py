@@ -76,6 +76,105 @@ def ensure_comfyui_on_volume():
     os.makedirs(DATA_BASE, exist_ok=True)
 
 
+def update_comfyui_backend_author_style():
+    print("Updating ComfyUI backend to the latest version...")
+    os.chdir(DATA_BASE)
+    try:
+        result = subprocess.run("git symbolic-ref HEAD", shell=True, capture_output=True, text=True)
+        if result.returncode != 0:
+            print("Detected detached HEAD, fetching and checking out main branch...")
+            subprocess.run("git fetch --all", shell=True, check=True, capture_output=True, text=True)
+            subprocess.run("git checkout -B main origin/main", shell=True, check=True, capture_output=True, text=True)
+            print("Successfully checked out main branch")
+
+        subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
+        result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
+        print("Git pull output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error updating ComfyUI backend: {e.stderr}")
+    except Exception as e:
+        print(f"Unexpected error during backend update: {e}")
+
+
+def update_comfyui_manager_author_style():
+    manager_dir = os.path.join(CUSTOM_NODES_DIR, "ComfyUI-Manager")
+    if os.path.exists(manager_dir):
+        print("Updating ComfyUI-Manager to the latest version...")
+        os.chdir(manager_dir)
+        try:
+            subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
+            result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
+            print("ComfyUI-Manager git pull output:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Error updating ComfyUI-Manager: {e.stderr}")
+        except Exception as e:
+            print(f"Unexpected error during ComfyUI-Manager update: {e}")
+        os.chdir(DATA_BASE)
+    else:
+        print("ComfyUI-Manager directory not found, installing...")
+        try:
+            subprocess.run("comfy node install ComfyUI-Manager", shell=True, check=True, capture_output=True, text=True)
+            print("ComfyUI-Manager installed successfully")
+        except subprocess.CalledProcessError as e:
+            print(f"Error installing ComfyUI-Manager: {e.stderr}")
+
+
+def update_comfyui_frontend_author_style():
+    print("Updating ComfyUI frontend by installing requirements...")
+    requirements_path = os.path.join(DATA_BASE, "requirements.txt")
+    if os.path.exists(requirements_path):
+        try:
+            result = subprocess.run(
+                f"/usr/local/bin/python -m pip install -r {requirements_path}",
+                shell=True,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            print("Frontend update output:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Error updating ComfyUI frontend: {e.stderr}")
+        except Exception as e:
+            print(f"Unexpected error during frontend update: {e}")
+    else:
+        print(f"Warning: {requirements_path} not found, skipping frontend update")
+
+
+def upgrade_runtime_tools_author_style():
+    print("Upgrading pip at runtime...")
+    try:
+        result = subprocess.run("pip install --upgrade pip", shell=True, check=True, capture_output=True, text=True)
+        print("pip upgrade output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error upgrading pip: {e.stderr}")
+    except Exception as e:
+        print(f"Unexpected error during pip upgrade: {e}")
+
+    print("Upgrading comfy-cli at runtime...")
+    try:
+        result = subprocess.run("pip install --no-cache-dir --upgrade comfy-cli", shell=True, check=True, capture_output=True, text=True)
+        print("comfy-cli upgrade output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error upgrading comfy-cli: {e.stderr}")
+    except Exception as e:
+        print(f"Unexpected error during comfy-cli upgrade: {e}")
+
+
+def configure_comfyui_manager_author_style():
+    config_content = "[default]\nnetwork_mode = private\nsecurity_level = weak\nlog_to_file = false\n"
+    config_paths = [
+        os.path.join(DATA_BASE, "user", "__manager", "config.ini"),
+        os.path.join(DATA_BASE, "user", "default", "ComfyUI-Manager", "config.ini"),
+    ]
+
+    print("Configuring ComfyUI-Manager: Disabling auto-fetch, setting security_level to weak, and disabling file logging...")
+    for config_path in config_paths:
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        with open(config_path, "w", encoding="utf-8") as handle:
+            handle.write(config_content)
+        print(f"Updated {config_path} with network_mode=private, security_level=weak, log_to_file=false")
+
+
 def detect_remote_branch(repo_dir: str) -> Optional[str]:
     run_shell("git remote set-head origin -a", cwd=repo_dir, check=False)
 
@@ -339,20 +438,11 @@ app = modal.App(name=APP_NAME, image=image)
 def ui():
     ensure_comfyui_on_volume()
 
-    # Diagnostic temporary fix: keep the ComfyUI backend pinned to the volume state.
-    print("Skipping ComfyUI backend update for this diagnostic run.")
-
-    print("Skipping runtime pip/comfy-cli upgrades; these should come from the built image.")
-
-    # Update ComfyUI frontend by installing requirements
-    print("Updating ComfyUI frontend by installing requirements...")
-    requirements_path = os.path.join(DATA_BASE, "requirements.txt")
-    try:
-        sync_frontend_requirements(requirements_path)
-    except subprocess.CalledProcessError as e:
-        print(f"Error updating ComfyUI frontend: {e.stderr}")
-    except Exception as e:
-        print(f"Unexpected error during frontend update: {e}")
+    update_comfyui_backend_author_style()
+    upgrade_runtime_tools_author_style()
+    update_comfyui_frontend_author_style()
+    update_comfyui_manager_author_style()
+    configure_comfyui_manager_author_style()
 
     try:
         sync_custom_node_repos()
@@ -406,7 +496,7 @@ def ui():
     print(f"Starting ComfyUI from {DATA_BASE} on {GPU_TYPE} with {BASE_MODEL_NAME} support...")
     
     # Start ComfyUI server with correct syntax and latest frontend
-    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000"]
+    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000", "--front-end-version", "Comfy-Org/ComfyUI_frontend@latest"]
     print(f"Executing: {' '.join(cmd)}")
     
     subprocess.Popen(

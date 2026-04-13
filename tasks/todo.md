@@ -26,3 +26,4 @@ Summary
 - Switched the runtime diagnostic from import-based checks to package-version checks for `blake3`, `comfy-aimdo`, `torch`, `torchvision`, and `torchaudio`.
 - Reinstalled the `torch / torchvision / torchaudio` trio together from the cu126 wheel index to address the `torchvision::nms` import crash.
 - Added `piexif` to the build image to satisfy `wlsh_nodes` import-time dependency resolution.
+- Reintroduced the author-style ComfyUI backend, ComfyUI-Manager, frontend, and runtime tool update flow into `v4`.
