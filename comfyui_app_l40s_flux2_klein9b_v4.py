@@ -327,13 +327,8 @@ app = modal.App(name=APP_NAME, image=image)
 def ui():
     ensure_comfyui_on_volume()
 
-    # Fix detached HEAD and update ComfyUI backend to the latest version
-    print("Fixing git branch and updating ComfyUI backend to the latest version...")
-    os.chdir(DATA_BASE)
-    try:
-        update_git_repo(DATA_BASE, "ComfyUI backend")
-    except Exception as e:
-        print(f"Unexpected error during backend update: {e}")
+    # Diagnostic temporary fix: keep the ComfyUI backend pinned to the volume state.
+    print("Skipping ComfyUI backend update for this diagnostic run.")
 
     print("Skipping runtime pip/comfy-cli upgrades; these should come from the built image.")
 

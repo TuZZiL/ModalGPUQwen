@@ -21,3 +21,4 @@ Summary
 - Synced `v4` exactly to the QuickPod reference inventory: 4 custom node repos and the full `flux2_klein9b` model list from `quick_download_quickpod_codex_v2.sh`.
 - Removed the `v3`-specific broader Qwen/Z-image inventory and manager-specific runtime behavior from the new `v4` launcher.
 - Switched the Colab notebook to download and deploy `comfyui_app_l40s_flux2_klein9b_v4.py`.
+- Temporarily disabled the ComfyUI backend update in `v4` to diagnose the `comfy_aimdo` import crash without changing the rest of the flow.
