@@ -8,3 +8,4 @@
 - If a runtime probe fails on a standard dependency like `blake3`, add it to the build image and keep the probe as a guard rather than trying to paper over the import crash.
 - For dependency diagnosis, prefer `importlib.metadata.version(...)` over import probes when the import itself may be crashing the app before the actual issue is visible.
 - When `torchvision::nms` crashes at import time, treat the `torch / torchvision / torchaudio` trio as a pinned unit and reinstall them together from the matching wheel index.
+- A single missing custom-node dependency like `piexif` can be fixed directly in the build image even if the node itself is optional and ComfyUI still starts.
