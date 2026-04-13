@@ -2,6 +2,7 @@ import hashlib
 import os
 import shutil
 import subprocess
+import sys
 from typing import Optional
 from huggingface_hub import hf_hub_download
 import modal
@@ -202,6 +203,28 @@ def sync_frontend_requirements(requirements_path: str):
     with open(FRONTEND_REQUIREMENTS_HASH, "w", encoding="utf-8") as handle:
         handle.write(current_hash)
 
+
+def probe_runtime_module(module_name: str):
+    result = subprocess.run(
+        [sys.executable, "-c", f"import {module_name}; print({module_name}.__file__)"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode == 0:
+        location = result.stdout.strip() or "<unknown>"
+        print(f"Runtime probe ok: {module_name} -> {location}")
+        return
+
+    stderr = result.stderr.strip() or result.stdout.strip() or "no output"
+    raise RuntimeError(f"Runtime probe failed for {module_name}: {stderr}")
+
+
+def probe_runtime_dependencies():
+    print(f"Runtime python: {sys.executable}")
+    probe_runtime_module("blake3")
+    probe_runtime_module("comfy_aimdo")
+
 def download_model(subdir: str, filename: str, primary_source: dict, backup_source: Optional[dict] = None, local_filename: Optional[str] = None):
     target_dir = os.path.join(MODELS_DIR, subdir)
     os.makedirs(target_dir, exist_ok=True)
@@ -346,6 +369,14 @@ def ui():
         sync_custom_node_repos()
     except Exception as e:
         print(f"Unexpected error during custom node sync: {e}")
+
+    print("Probing runtime dependencies before launching ComfyUI...")
+    try:
+        probe_runtime_dependencies()
+    except Exception as e:
+        print(f"Runtime dependency probe failed: {e}")
+        raise
+    print("Runtime dependency probe passed.")
 
     # Ensure all required directories exist for the FLUX 2 Klein 9B stack
     required_dirs = [
