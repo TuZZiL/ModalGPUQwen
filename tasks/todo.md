@@ -27,3 +27,4 @@ Summary
 - Reinstalled the `torch / torchvision / torchaudio` trio together from the cu126 wheel index to address the `torchvision::nms` import crash.
 - Added `piexif` to the build image to satisfy `wlsh_nodes` import-time dependency resolution.
 - Reintroduced the author-style ComfyUI backend, ComfyUI-Manager, frontend, and runtime tool update flow into `v4`.
+- Added `--enable-cors-header` to the ComfyUI launch args to address `403 Forbidden` behind the Modal reverse proxy.

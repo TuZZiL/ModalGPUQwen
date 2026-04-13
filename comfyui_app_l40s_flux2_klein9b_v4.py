@@ -496,7 +496,18 @@ def ui():
     print(f"Starting ComfyUI from {DATA_BASE} on {GPU_TYPE} with {BASE_MODEL_NAME} support...")
     
     # Start ComfyUI server with correct syntax and latest frontend
-    cmd = ["comfy", "launch", "--", "--listen", "0.0.0.0", "--port", "8000", "--front-end-version", "Comfy-Org/ComfyUI_frontend@latest"]
+    cmd = [
+        "comfy",
+        "launch",
+        "--",
+        "--listen",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--enable-cors-header",
+        "--front-end-version",
+        "Comfy-Org/ComfyUI_frontend@latest",
+    ]
     print(f"Executing: {' '.join(cmd)}")
     
     subprocess.Popen(
