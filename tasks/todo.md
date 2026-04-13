@@ -10,7 +10,7 @@ Mode: calm, direct, specific
 - [x] Sync the `v4` script to the QuickPod inventory without editing `v3`.
 - [x] Update the Colab notebook to deploy the new `v4` script.
 - [x] Verify syntax and review the final diff.
-- [ ] Commit the targeted changes and push them to GitHub.
+- [x] Commit the targeted changes and push them to GitHub.
 
 Notes
 - `comfyui_app_l40s_v3.py` must remain unchanged during this iteration.
