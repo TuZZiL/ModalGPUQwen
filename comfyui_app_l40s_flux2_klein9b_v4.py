@@ -23,7 +23,7 @@ CUSTOM_NODE_REPOS = [
     ("city96/ComfyUI-GGUF", True),
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
-    ("TuZZiL/Comfyui-flux2klein-Lora-loader", True),
+    ("TuZZiL/tuz-fluxklein-toolkit", True),
 ]
 
 # ComfyUI default install location
