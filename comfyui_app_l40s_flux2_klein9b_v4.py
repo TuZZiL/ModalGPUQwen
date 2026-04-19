@@ -330,16 +330,17 @@ def download_model(subdir: str, filename: str, primary_source: dict, backup_sour
         source_type = "Backup" if i > 0 else "Primary"
         print(f"Attempting {source_type} download for {target_name}...")
         try:
-            if "url" in source:
-                # Direct download (Civitai, etc.)
-                print(f"Downloading from URL: {source['url']}")
-                # Use wget for direct URLs
-                subprocess.run(f"wget -O {TMP_DL}/{filename} \"{source['url']}\"", shell=True, check=True)
+            source_url = source.get("url")
+            repo = source.get("repo_id")
+            subf = source.get("subfolder")
+            if source_url or (isinstance(repo, str) and repo.startswith("http")):
+                # Direct download from a resolved file URL.
+                download_url = source_url or repo
+                print(f"Downloading from URL: {download_url}")
+                subprocess.run(["wget", "-O", os.path.join(TMP_DL, filename), download_url], check=True)
                 shutil.move(f"{TMP_DL}/{filename}", target_path)
             else:
                 # HF download
-                repo = source.get("repo_id")
-                subf = source.get("subfolder")
                 print(f"Downloading from HF: {repo}/{subf if subf else ''}")
                 out = hf_hub_download(repo_id=repo, filename=filename, subfolder=subf, local_dir=TMP_DL)
                 shutil.move(out, target_path)

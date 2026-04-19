@@ -3,5 +3,6 @@
 - done: прочитано `comfyui_app_l40s_flux2_klein9b_v4.py`; файл керує Modal image, runtime update ComfyUI, sync custom nodes і download моделей `flux2_klein9b`.
 - done: додано 3 нові LoRA entries до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - done: перевірено синтаксис `python -m py_compile` для `comfyui_app_l40s_flux2_klein9b_v4.py`.
+- done: виправлено `download_model` для direct Hugging Face resolved URLs; тепер вони качаються через `wget`, а не `hf_hub_download`.
 - next: працювати лише в `comfyui_app_l40s_flux2_klein9b_v4.py`, вносити surgical changes під конкретну задачу.
 - context: `Project_Report.md` був відсутній на старті сесії.
