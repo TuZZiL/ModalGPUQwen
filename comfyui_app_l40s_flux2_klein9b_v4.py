@@ -417,6 +417,11 @@ model_tasks = [
     ("loras/FLUX9bKlein", "Klein-consistency.safetensors", "dx8152/Flux2-Klein-9B-Consistency", None),
     ("loras/FLUX9bKlein", "klein_9b_enhancer_v2.safetensors", "reverentelusarca/detail-enhancer-flux-klein-9b", None),
     ("loras/FLUX9bKlein", "realistic.safetensors", "joseph0017/Flux2-Klein-9B-Enhanced-Details", None),
+    ("loras/FLUX9bKlein", "f2k_9B_lcs_consist_preview.safetensors", "https://huggingface.co/Sentinel7/flux2/resolve/main/1939453/2810265/f2k_9B_lcs_consist_preview.safetensors", None),
+    ("loras/FLUX9bKlein", "Remove_Clothing_Censor.safetensors", "https://huggingface.co/Sentinel7/flux2/resolve/main/730405/2850798/Remove_Clothing_Censor.safetensors", None),
+    ("loras/FLUX9bKlein", "Leaked%20nudes%20v3.safetensors", "https://huggingface.co/creatormirai/AssumethePosition/resolve/main/Klein/Leaked%20nudes%20v3.safetensors", None, "Leaked nudes v3.safetensors"),
+    ("loras/FLUX9bKlein", "cum_on_face_v2.safetensors", "https://huggingface.co/creatormirai/AssumethePosition/resolve/main/Klein/cum_on_face_v2.safetensors", None),
+    ("loras/FLUX9bKlein", "HighResolution9B.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "BustyWomens_v1_7.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "SEXGOD_ImprovedNudity_Klein9b_v3.safetensors", "andrewwe/klein9bl", None),
 ]
