@@ -425,6 +425,7 @@ model_tasks = [
     ("loras/FLUX9bKlein", "HighResolution9B.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "BustyWomens_v1_7.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "SEXGOD_ImprovedNudity_Klein9b_v3.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "remove_dress1904_3.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
