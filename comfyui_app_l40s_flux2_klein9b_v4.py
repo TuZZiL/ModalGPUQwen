@@ -425,7 +425,9 @@ model_tasks = [
     ("loras/FLUX9bKlein", "HighResolution9B.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "BustyWomens_v1_7.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "SEXGOD_ImprovedNudity_Klein9b_v3.safetensors", "andrewwe/klein9bl", None),
-    ("loras/FLUX9bKlein", "remove_dress1904_3.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Flux2-Klein-9B-consistency-V2.safetensors", "dx8152/Flux2-Klein-9B-Consistency", None),
+    ("loras/FLUX9bKlein", "klein_snofs_v1_3.safetensors", "sintecs/flux_klein_loras", None),
+    ("loras/FLUX9bKlein", "remove_dress1904_4.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
