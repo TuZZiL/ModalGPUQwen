@@ -3,6 +3,8 @@
   - `Flux2-Klein-9B-consistency-V2.safetensors`
   - `klein_snofs_v1_3.safetensors`
   - `remove_dress1904_4.safetensors`
+  - `pussydiffusion-f2-klein-9b_v2.safetensors`
+  - `Realism_Engine_Klein_V1.safetensors`
 - done: видалено 4 застарілі лори (замінено новими версіями або видалено за запитом):
   - `klein_snofs_v1_1.safetensors`
   - `ChrisHendricks_v2_4.safetensors`
