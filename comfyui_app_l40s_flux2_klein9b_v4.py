@@ -395,7 +395,7 @@ model_tasks = [
     ("loras/FLUX9bKlein", "Penis_edit_V01.safetensors", "UnifiedHorusRA/TheFourHorsemen", "erect_penis_Flux_2_Klein_9B/Flux_2_Klein_9B"),
     ("loras/FLUX9bKlein", "klein-deepthroat-15epoc-k3nk.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "bj_20260120_22-22-29epoch15_comfy.safetensors", "UnifiedHorusRA/TheFourHorsemen", "flux2-klein-9b_Pyros_BJ/Flux_2_Klein_9B"),
-    ("loras/FLUX9bKlein", "eros_fklein_v1_000017100.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "eros_fklein_v2_000019795.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "clothesonoffv2.safetensors", "Sentinel7/flux2", "2337249/2665761"),
     ("loras/FLUX9bKlein", "removedress3000steps4_3.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "RemoveDressKlein9b_3.safetensors", "andrewwe/klein9bl", None),

@@ -6,6 +6,7 @@
   - `pussydiffusion-f2-klein-9b_v2.safetensors`
   - `Realism_Engine_Klein_V1.safetensors`
   - `klein-m4crom4sti4-v2-3epoc-k3nk.safetensors`
+- done: оновлено `eros_fklein` до версії `v2_000019795` (версію `v1` видалено).
 - done: видалено 4 застарілі лори (замінено новими версіями або видалено за запитом):
   - `klein_snofs_v1_1.safetensors`
   - `ChrisHendricks_v2_4.safetensors`
