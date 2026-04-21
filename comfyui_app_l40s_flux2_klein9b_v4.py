@@ -429,6 +429,7 @@ model_tasks = [
     ("loras/FLUX9bKlein", "klein-m4crom4sti4-v2-3epoc-k3nk.safetensors", "Sentinel7/flux2", "2327401/2710450"),
     ("loras/FLUX9bKlein", "Chest_9Bslider.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "buttocksslider.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "SheerSeeThrough_F2K9B_v1.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
