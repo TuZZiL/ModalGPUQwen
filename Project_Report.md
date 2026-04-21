@@ -1,3 +1,7 @@
+# 2026-04-21
+- done: додано 2 лори (`Chest_9Bslider.safetensors`, `buttocksslider.safetensors`) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`
+- next: перевірка в ComfyUI.
+
 # 2026-04-20
 - done: додано 3 нові лори до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`:
   - `Flux2-Klein-9B-consistency-V2.safetensors`

@@ -427,6 +427,8 @@ model_tasks = [
     ("loras/FLUX9bKlein", "pussydiffusion-f2-klein-9b_v2.safetensors", "https://huggingface.co/UnifiedHorusRA/TheFourHorsemen/resolve/main/PussyDiffusion_-_Flux2_Klein/Flux_2_Klein_9B/pussydiffusion-f2-klein-9b_v2.safetensors", None),
     ("loras/FLUX9bKlein", "Realism_Engine_Klein_V1.safetensors", "https://huggingface.co/UnifiedHorusRA/TheFourHorsemen/resolve/main/Realism_Engine_Klein/Flux_2_Klein_9B/Realism_Engine_Klein_V1.safetensors", None),
     ("loras/FLUX9bKlein", "klein-m4crom4sti4-v2-3epoc-k3nk.safetensors", "Sentinel7/flux2", "2327401/2710450"),
+    ("loras/FLUX9bKlein", "Chest_9Bslider.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "buttocksslider.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
