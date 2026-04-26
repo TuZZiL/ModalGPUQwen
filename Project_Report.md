@@ -1,4 +1,5 @@
 # 2026-04-26
+- done: додано лору `Flat_C_6.safetensors` до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - done: додано 4 нові лори (`Remove_DressMax_9.safetensors`, `Remove_DressMax_8.safetensors`, `Remove_DressMax_7.safetensors`, `Flat_C_2.safetensors`) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - next: перевірка в ComfyUI.
 
