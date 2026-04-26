@@ -1,3 +1,7 @@
+# 2026-04-26
+- done: додано 4 нові лори (`Remove_DressMax_9.safetensors`, `Remove_DressMax_8.safetensors`, `Remove_DressMax_7.safetensors`, `Flat_C_2.safetensors`) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
+- next: перевірка в ComfyUI.
+
 # 2026-04-21
 - done: додано лору `SheerSeeThrough_F2K9B_v1.safetensors` до `model_tasks`.
 - done: додано 2 лори (`Chest_9Bslider.safetensors`, `buttocksslider.safetensors`) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`

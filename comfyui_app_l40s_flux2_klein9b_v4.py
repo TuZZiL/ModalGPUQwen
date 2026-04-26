@@ -430,6 +430,10 @@ model_tasks = [
     ("loras/FLUX9bKlein", "Chest_9Bslider.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "buttocksslider.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "SheerSeeThrough_F2K9B_v1.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Remove_DressMax_9.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Remove_DressMax_8.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Remove_DressMax_7.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Flat_C_2.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
