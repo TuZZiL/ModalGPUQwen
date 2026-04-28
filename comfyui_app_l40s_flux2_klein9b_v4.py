@@ -435,6 +435,8 @@ model_tasks = [
     ("loras/FLUX9bKlein", "Remove_DressMax_7.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "Flat_C_2.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "Flat_C_6.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Flat_C_8.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "Flat_C_10.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
