@@ -1,3 +1,9 @@
+# 2026-06-23
+- done: створено окремий Modal-скрипт `comfyui_app_l40s_krea2.py` для запуску Krea 2 Base/Turbo.
+- done: додано завантаження моделей `Krea2_Turbo_fp8mixed.safetensors`, `qwen3vl_4b_fp8_scaled.safetensors` та VAE `qwen_image_vae.safetensors`.
+- done: підключено кастомну ноду `ComfyUI-ConditioningKrea2Rebalance` разом з базовими нодами.
+- next: перевірка працездатності скрипта на Modal.
+
 # 2026-04-26
 - done: додано лору `Flat_C_6.safetensors` до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - done: додано 4 нові лори (`Remove_DressMax_9.safetensors`, `Remove_DressMax_8.safetensors`, `Remove_DressMax_7.safetensors`, `Flat_C_2.safetensors`) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
