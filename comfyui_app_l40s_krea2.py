@@ -26,6 +26,7 @@ CUSTOM_NODE_REPOS = [
     ("kijai/ComfyUI-KJNodes", True),
     ("TuZZiL/tuz-fluxklein-toolkit", True),
     ("nova452/ComfyUI-ConditioningKrea2Rebalance", True),
+    ("Winnougan/WINT8-ComfyUI", True),
 ]
 
 # ComfyUI default install location
@@ -362,7 +363,7 @@ def download_model(subdir: str, filename: str, primary_source: dict, backup_sour
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg", "imagemagick", "libmagickwand-dev")
-    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf", "blake3", "comfy-aimdo", "piexif")
+    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf", "blake3", "comfy-aimdo", "piexif", "scikit-image", "ultralytics", "webcolors", "beautifulsoup4")
     .run_commands([
         "pip install --upgrade pip",
         "pip install --no-cache-dir --force-reinstall --index-url https://download.pytorch.org/whl/cu126 torch==2.11.0 torchvision==0.26.0 torchaudio==2.11.0",

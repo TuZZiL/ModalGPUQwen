@@ -1,7 +1,8 @@
 # 2026-06-23
 - done: створено окремий Modal-скрипт `comfyui_app_l40s_krea2.py` для запуску Krea 2 Base/Turbo.
 - done: додано завантаження моделей `Krea2_Turbo_fp8mixed.safetensors`, `qwen3vl_4b_fp8_scaled.safetensors` та VAE `qwen_image_vae.safetensors`.
-- done: підключено кастомну ноду `ComfyUI-ConditioningKrea2Rebalance` разом з базовими нодами.
+- done: підключено кастомні ноди `ComfyUI-ConditioningKrea2Rebalance` та `Winnougan/WINT8-ComfyUI` (для підтримки `Load INT8 Model` / `WINT8 Diffuser Loader`).
+- done: додано відсутні pip-залежності (`scikit-image`, `ultralytics`, `webcolors`, `beautifulsoup4`) до Modal образу для запобігання збоїв завантаження нод.
 - next: перевірка працездатності скрипта на Modal.
 
 # 2026-04-26
