@@ -21,6 +21,7 @@ BASE_MODEL_NAME = "krea2"
 APP_NAME = "comfyui-l40s-krea2"
 
 CUSTOM_NODE_REPOS = [
+    ("ltdrdata/ComfyUI-Manager", True),
     ("city96/ComfyUI-GGUF", True),
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
