@@ -1,3 +1,8 @@
+# 2026-06-26
+- done: додано 6 нових лор (HugeDick_c1-st3000/4000, TribeW_v1_c1-st3000/4000/5000/6000) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
+- done: успішно перевірено синтаксис скрипта.
+- next: перевірка завантаження лор на Modal.
+
 # 2026-06-23
 - done: створено окремий Modal-скрипт `comfyui_app_l40s_krea2.py` для запуску Krea 2 Base/Turbo.
 - done: додано завантаження моделей `Krea2_Turbo_fp8mixed.safetensors`, `qwen3vl_4b_fp8_scaled.safetensors` та VAE `qwen_image_vae.safetensors`.

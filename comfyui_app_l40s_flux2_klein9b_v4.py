@@ -437,6 +437,12 @@ model_tasks = [
     ("loras/FLUX9bKlein", "Flat_C_6.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "Flat_C_8.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "Flat_C_10.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "HugeDick_c1-st3000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "HugeDick_c1-st4000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "TribeW_v1_c1-st3000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "TribeW_v1_c1-st4000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "TribeW_v1_c1-st5000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "TribeW_v1_c1-st6000.safetensors", "andrewwe/klein9bl", None),
 ]
 
 # Create volume
