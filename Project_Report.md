@@ -1,3 +1,9 @@
+# 2026-06-27
+- done: додано новий uncensored текстовий енкодер `Qwen3-8B-Gemini-2.5-Flash-Uncensored-Q8_0.gguf` до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
+- done: додано 6 нових лор (SexGod, SmartCharacterSwap, NaturalBeauty, 34O CUP MACROMASTIA, C.H.E.S.T., Pussy FIX) до `model_tasks`.
+- done: успішно перевірено синтаксис скрипта.
+- next: перевірка завантаження нових моделей на Modal.
+
 # 2026-06-26
 - done: додано 6 нових лор (HugeDick_c1-st3000/4000, TribeW_v1_c1-st3000/4000/5000/6000) до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - done: успішно перевірено синтаксис скрипта.

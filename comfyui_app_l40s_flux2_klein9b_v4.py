@@ -379,6 +379,7 @@ for repo, install_reqs in CUSTOM_NODE_REPOS:
 model_tasks = [
     ("unet/FLUX", "flux-2-klein-9b-Q8_0.gguf", "unsloth/FLUX.2-klein-9B-GGUF", None),
     ("text_encoders", "qwen_3_8b_fp8mixed.safetensors", "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "split_files/text_encoders"),
+    ("text_encoders", "Qwen3-8B-Gemini-2.5-Flash-Uncensored-Q8_0.gguf", "wazimondo/Qwen3-Uncensored-TextEncoders-FLUX-Klein-Z-Image-Turbo-GGUF", None),
     ("vae", "flux2-vae.safetensors", "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "split_files/vae"),
     ("loras/FLUX9bKlein", "The_Body_Version_A_Flux2.k.9B_r16_AdamW8Bit_Weighted_768_woman_000005000.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "The_Body_Version_M_Flux.2.klein.9B.r16._000005000.safetensors", "andrewwe/klein9bl", None),
@@ -443,6 +444,12 @@ model_tasks = [
     ("loras/FLUX9bKlein", "TribeW_v1_c1-st4000.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "TribeW_v1_c1-st5000.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "TribeW_v1_c1-st6000.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "SexGod_Klein9b_ImageEdit_NudityHelper_v1.safetensors", "SexGod1979/Flux.2_Klein9b_ImageEdit_NudityHelper", None),
+    ("loras/FLUX9bKlein", "Klein2-9B-SmartCharacterSwap.safetensors", "nhathoangfoto/Flux.2-Klein-9B-SmartCharacterSwap", None),
+    ("loras/FLUX9bKlein", "NaturalBeautyFLUX2Klein9BNudity_v2.safetensors", "codeShare/flux-klein-9B-loras", None),
+    ("loras/FLUX9bKlein", "34O CUP M4CROM4STI4 v2.0 - Klein9B - large-gigantic pendulous breasts.safetensors", "EllaPriest45/Klein9B_Actions", None),
+    ("loras/FLUX9bKlein", "C.H.E.S.T. Show - Klein9B.safetensors", "EllaPriest45/Klein9B_Actions", None),
+    ("loras/FLUX9bKlein", "Pussy FIX - Klein9B - pusfix,pubic area,genital area.safetensors", "EllaPriest45/Klein9B_Actions", None),
 ]
 
 # Create volume
