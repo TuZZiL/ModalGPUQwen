@@ -1,3 +1,7 @@
+# 2026-06-28
+- done: додано кастомну ноду `ClownsharkBatwing/RES4LYF` до `CUSTOM_NODE_REPOS` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
+- next: перевірка завантаження ноди на Modal.
+
 # 2026-06-27
 - done: додано новий uncensored текстовий енкодер `Qwen3-8B-Gemini-2.5-Flash-Uncensored-Q8_0.gguf` до `model_tasks` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
 - done: додано 6 нових лор (SexGod, SmartCharacterSwap, NaturalBeauty, 34O CUP MACROMASTIA, C.H.E.S.T., Pussy FIX) до `model_tasks`.

@@ -24,6 +24,7 @@ CUSTOM_NODE_REPOS = [
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
     ("TuZZiL/tuz-fluxklein-toolkit", True),
+    ("ClownsharkBatwing/RES4LYF", True),
 ]
 
 # ComfyUI default install location
