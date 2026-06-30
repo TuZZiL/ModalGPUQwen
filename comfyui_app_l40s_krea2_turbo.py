@@ -395,6 +395,11 @@ model_tasks = [
     ("loras/krea2", "krea2_nud3.safetensors", "https://huggingface.co/TechScribe42/krea/resolve/main/nsfw/krea2_nud3.safetensors", None),
     ("loras/krea2", "pytorch_lora_weights.safetensors", "https://huggingface.co/Beinsezii/Krea-2-Turbo-Projector-Scale-LoRA-Diffusers/resolve/main/pytorch_lora_weights.safetensors", None, "krea2_projector_scale.safetensors"),
     ("loras/krea2", "Krea2-realism-V1.safetensors", "https://huggingface.co/adslkfsajlkj/krea2-realism/resolve/main/2728365/3066973/Krea2-realism-V1.safetensors", None),
+    ("loras/krea2", "KNPV3_1.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/KNPV3_1.safetensors", None),
+    ("loras/krea2", "galaxyace_krea2.safetensors", "https://huggingface.co/jjbRs/rs-imagen-models/resolve/main/loras/galaxyace_krea2.safetensors", None),
+    ("loras/krea2", "saggy-krea-turbo.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/1844246/3067822/saggy-krea-turbo.safetensors", None),
+    ("loras/krea2", "BreastSlider-KREA2.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/BreastSlider-KREA2.safetensors", None),
+    ("loras/krea2", "lenovo_krea2.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/lenovo_krea2.safetensors", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
