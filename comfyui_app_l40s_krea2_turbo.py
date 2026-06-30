@@ -391,7 +391,7 @@ model_tasks = [
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     ("loras/krea2", "realism_engine_krea2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2688234/3070702/realism_engine_krea2_v2.safetensors", None),
-    ("loras/krea2", "MysticXXX_KREA2_v1.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2728644/3067313/MysticXXX_KREA2_v1.safetensors", None),
+    ("loras/krea2", "MysticXXX_KREA2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2728644/3083062/MysticXXX_KREA2_v2.safetensors", None),
     ("loras/krea2", "krea2_nud3.safetensors", "https://huggingface.co/TechScribe42/krea/resolve/main/nsfw/krea2_nud3.safetensors", None),
     ("loras/krea2", "pytorch_lora_weights.safetensors", "https://huggingface.co/Beinsezii/Krea-2-Turbo-Projector-Scale-LoRA-Diffusers/resolve/main/pytorch_lora_weights.safetensors", None, "krea2_projector_scale.safetensors"),
     ("loras/krea2", "Krea2-realism-V1.safetensors", "https://huggingface.co/adslkfsajlkj/krea2-realism/resolve/main/2728365/3066973/Krea2-realism-V1.safetensors", None),
