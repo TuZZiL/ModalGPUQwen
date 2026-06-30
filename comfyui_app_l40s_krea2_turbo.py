@@ -403,6 +403,9 @@ model_tasks = [
     ("loras/krea2", "HMBreasts_krea2_epoch12.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2740401/3081828/HMBreasts_krea2_epoch12.safetensors", None),
     ("loras/krea2", "Krea2_NSFW_plus.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2742640/3084588/Krea2%20NSFW%2B.safetensors", None),
     ("loras/krea2", "krea2_macromastia_clothed.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2_macromastia_clothed.safetensors", None),
+    ("loras/krea2", "krea2filterbypass3.safetensors", "https://huggingface.co/alienmafio/my-krea2-loras/resolve/main/krea2filterbypass3.safetensors", None),
+    ("loras/krea2", "PornMaster_Krea2_Detail_Slider.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/PornMaster%20Krea2%20Detail%20Slider%20-%20Krea2%20-%20-1.5%20%2B1.safetensors", None),
+    ("loras/krea2", "NSFW_Krea2_actions.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/NSFW%20-%20Krea2%20-%20Krea2%20-%20Asian%2Ccreampie%2Cdoggystyle%2Cebony%2Chairy%2Cmilf%2Creverse%20cowgirl%2Cshaved%2Cspreading%2Csuicide%20girls.safetensors", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)

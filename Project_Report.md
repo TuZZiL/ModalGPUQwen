@@ -1,5 +1,5 @@
 # 2026-06-30
-- done: додано ще 3 додаткові LoRAs (разом 13 нових LoRAs) для Krea 2 до `model_tasks` у `comfyui_app_l40s_krea2_turbo.py`.
+- done: додано ще 3 додаткові LoRAs (разом 16 нових LoRAs) для Krea 2 до `model_tasks` у `comfyui_app_l40s_krea2_turbo.py`.
 - done: оновлено версію LoRA `MysticXXX_KREA2_v1.safetensors` на `MysticXXX_KREA2_v2.safetensors` у `model_tasks`.
 - done: додано репозиторій `erosDiffusion/ComfyUI-EulerDiscreteScheduler` до `CUSTOM_NODE_REPOS` для усунення помилки бракуючої ноди `ComfyUI-EulerFlowMatchingDiscreteScheduler`.
 - done: перевірено синтаксис файлу (`py_compile`).
