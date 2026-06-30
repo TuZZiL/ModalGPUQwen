@@ -17,17 +17,16 @@ TMP_DL = "/tmp/download"
 RUNTIME_STATE_DIR = os.path.join(DATA_ROOT, ".runtime_state")
 FRONTEND_REQUIREMENTS_HASH = os.path.join(RUNTIME_STATE_DIR, "requirements.sha256")
 GPU_TYPE = "L40S"
-BASE_MODEL_NAME = "krea2"
-APP_NAME = "comfyui-l40s-krea2"
-
+BASE_MODEL_NAME = "krea2_turbo"
+APP_NAME = "comfyui-l40s-krea2-turbo"
+# Base utility nodes + Krea 2 conditioning rebalance node.
+# Krea 2 is a FLUX 2-architecture model loaded via native ComfyUI nodes
+# (UNETLoader / CLIPLoader type "krea2" / VAELoader), so no GGUF or
+# klein-specific loaders are needed here.
 CUSTOM_NODE_REPOS = [
-    ("ltdrdata/ComfyUI-Manager", True),
-    ("city96/ComfyUI-GGUF", True),
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
-    ("TuZZiL/tuz-fluxklein-toolkit", True),
-    ("nova452/ComfyUI-ConditioningKrea2Rebalance", True),
-    ("Winnougan/WINT8-ComfyUI", True),
+    ("nova452/ComfyUI-ConditioningKrea2Rebalance", False),
 ]
 
 # ComfyUI default install location
@@ -316,7 +315,6 @@ def probe_runtime_dependencies():
         except PackageNotFoundError:
             print(f"Runtime package: {package_name}=MISSING")
 
-
 def download_model(subdir: str, filename: str, primary_source: dict, backup_source: Optional[dict] = None, local_filename: Optional[str] = None):
     target_dir = os.path.join(MODELS_DIR, subdir)
     os.makedirs(target_dir, exist_ok=True)
@@ -349,7 +347,7 @@ def download_model(subdir: str, filename: str, primary_source: dict, backup_sour
                 print(f"Downloading from HF: {repo}/{subf if subf else ''}")
                 out = hf_hub_download(repo_id=repo, filename=filename, subfolder=subf, local_dir=TMP_DL)
                 shutil.move(out, target_path)
-            
+
             print(f"Successfully downloaded {target_name} from {source_type} source.")
             return
         except Exception as e:
@@ -359,12 +357,12 @@ def download_model(subdir: str, filename: str, primary_source: dict, backup_sour
             else:
                 print("Trying next source...")
 
-
 # Build image with ComfyUI installed to default location /root/comfy/ComfyUI
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg", "imagemagick", "libmagickwand-dev")
-    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf", "blake3", "comfy-aimdo", "piexif", "scikit-image", "ultralytics", "webcolors", "beautifulsoup4")
+    # Libraries required by the custom nodes (kept aligned with the klein9b stack).
+    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf", "blake3", "comfy-aimdo", "piexif")
     .run_commands([
         "pip install --upgrade pip",
         "pip install --no-cache-dir --force-reinstall --index-url https://download.pytorch.org/whl/cu126 torch==2.11.0 torchvision==0.26.0 torchaudio==2.11.0",
@@ -376,19 +374,29 @@ image = (
     .env({"HF_HUB_ENABLE_HF_TRANSFER": "1"})
 )
 
-# Custom nodes baked into base image
+# Bake custom nodes into the image; runtime sync_custom_node_repos keeps them updated.
 for repo, install_reqs in CUSTOM_NODE_REPOS:
     image = image.run_commands([git_clone_cmd(repo, install_reqs=install_reqs)])
 
-# Krea 2 models and dependencies tasks
+# Krea 2 Turbo assets.
+#   - Model: FP8 (mixed) quant of the FLUX 2-architecture Krea 2 Turbo, ideal for L40S (Ada/RTX 40xx).
+#     Load via native "Load Diffusion Model" (UNETLoader) from models/diffusion_models.
+#   - Text encoder: Qwen3-VL 4B -> CLIPLoader with type "krea2".
+#   - VAE: qwen_image_vae (same VAE family as Anima).
+# Turbo inference reference: 8 steps, CFG 0.0, mu 1.15, 1024-2048px.
 model_tasks = [
     ("diffusion_models", "Krea2_Turbo_fp8mixed.safetensors", "Winnougan/Krea-2-Base-Turbo-NVFP4-FP8-INT8", None),
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
+    ("loras/krea2", "realism_engine_krea2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2688234/3070702/realism_engine_krea2_v2.safetensors", None),
+    ("loras/krea2", "MysticXXX_KREA2_v1.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2728644/3067313/MysticXXX_KREA2_v1.safetensors", None),
+    ("loras/krea2", "krea2_nud3.safetensors", "https://huggingface.co/TechScribe42/krea/resolve/main/nsfw/krea2_nud3.safetensors", None),
+    ("loras/krea2", "pytorch_lora_weights.safetensors", "https://huggingface.co/Beinsezii/Krea-2-Turbo-Projector-Scale-LoRA-Diffusers/resolve/main/pytorch_lora_weights.safetensors", None, "krea2_projector_scale.safetensors"),
+    ("loras/krea2", "Krea2-realism-V1.safetensors", "https://huggingface.co/adslkfsajlkj/krea2-realism/resolve/main/2728365/3066973/Krea2-realism-V1.safetensors", None),
 ]
 
-# Create volume
-vol = modal.Volume.from_name("comfyui-app", create_if_missing=True)
+# Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
+vol = modal.Volume.from_name("comfyui-krea2", create_if_missing=True)
 
 app = modal.App(name=APP_NAME, image=image)
 
@@ -423,20 +431,22 @@ def ui():
         raise
     print("Runtime dependency probe passed.")
 
-    # Ensure all required directories exist for Krea 2 models
+    # Ensure all required directories exist for the Krea 2 Turbo stack
     required_dirs = [
         CUSTOM_NODES_DIR,
         MODELS_DIR,
         os.path.join(MODELS_DIR, "diffusion_models"),
         os.path.join(MODELS_DIR, "text_encoders"),
         os.path.join(MODELS_DIR, "vae"),
+        os.path.join(MODELS_DIR, "loras"),
+        os.path.join(MODELS_DIR, "loras", "krea2"),
         TMP_DL,
     ]
-    
+
     for d in required_dirs:
         os.makedirs(d, exist_ok=True)
 
-    # Download models at runtime (only if missing)
+    # Download Krea 2 Turbo models at runtime (only if missing)
     print(f"Checking and downloading missing {BASE_MODEL_NAME} models...")
     for task in model_tasks:
         sub, fn, repo, subf = task[:4]
@@ -457,7 +467,7 @@ def ui():
 
     # Launch ComfyUI from volume location
     print(f"Starting ComfyUI from {DATA_BASE} on {GPU_TYPE} with {BASE_MODEL_NAME} support...")
-    
+
     # Start ComfyUI server with correct syntax and latest frontend
     cmd = [
         "comfy",
@@ -472,7 +482,7 @@ def ui():
         "Comfy-Org/ComfyUI_frontend@latest",
     ]
     print(f"Executing: {' '.join(cmd)}")
-    
+
     subprocess.Popen(
         cmd,
         cwd=DATA_BASE,
