@@ -400,6 +400,9 @@ model_tasks = [
     ("loras/krea2", "saggy-krea-turbo.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/1844246/3067822/saggy-krea-turbo.safetensors", None),
     ("loras/krea2", "BreastSlider-KREA2.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/BreastSlider-KREA2.safetensors", None),
     ("loras/krea2", "lenovo_krea2.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/lenovo_krea2.safetensors", None),
+    ("loras/krea2", "HMBreasts_krea2_epoch12.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2740401/3081828/HMBreasts_krea2_epoch12.safetensors", None),
+    ("loras/krea2", "Krea2_NSFW_plus.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2742640/3084588/Krea2%20NSFW%2B.safetensors", None),
+    ("loras/krea2", "krea2_macromastia_clothed.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2_macromastia_clothed.safetensors", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
