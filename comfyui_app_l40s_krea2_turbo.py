@@ -24,6 +24,7 @@ APP_NAME = "comfyui-l40s-krea2-turbo"
 # (UNETLoader / CLIPLoader type "krea2" / VAELoader), so no GGUF or
 # klein-specific loaders are needed here.
 CUSTOM_NODE_REPOS = [
+    ("Comfy-Org/ComfyUI-Manager", False),
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
     ("nova452/ComfyUI-ConditioningKrea2Rebalance", False),
