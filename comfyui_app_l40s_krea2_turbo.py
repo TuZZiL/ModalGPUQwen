@@ -27,6 +27,7 @@ CUSTOM_NODE_REPOS = [
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
     ("nova452/ComfyUI-ConditioningKrea2Rebalance", False),
+    ("erosDiffusion/ComfyUI-EulerDiscreteScheduler", False),
 ]
 
 # ComfyUI default install location

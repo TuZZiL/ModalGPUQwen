@@ -1,7 +1,8 @@
 # 2026-06-30
 - done: додано 5 нових LoRAs для Krea 2 до `model_tasks` та `required_dirs` у `comfyui_app_l40s_krea2_turbo.py`.
+- done: додано репозиторій `erosDiffusion/ComfyUI-EulerDiscreteScheduler` до `CUSTOM_NODE_REPOS` для усунення помилки бракуючої ноди `ComfyUI-EulerFlowMatchingDiscreteScheduler`.
 - done: перевірено синтаксис файлу (`py_compile`).
-- next: запуск comfyui_app_l40s_krea2_turbo.py на Modal для перевірки завантаження LoRA.
+- next: запуск comfyui_app_l40s_krea2_turbo.py на Modal для перевірки завантаження LoRA та ноди.
 
 # 2026-06-28
 - done: додано кастомну ноду `ClownsharkBatwing/RES4LYF` до `CUSTOM_NODE_REPOS` у `comfyui_app_l40s_flux2_klein9b_v4.py`.
