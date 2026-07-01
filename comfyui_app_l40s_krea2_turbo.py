@@ -29,6 +29,7 @@ CUSTOM_NODE_REPOS = [
     ("kijai/ComfyUI-KJNodes", True),
     ("nova452/ComfyUI-ConditioningKrea2Rebalance", False),
     ("erosDiffusion/ComfyUI-EulerDiscreteScheduler", False),
+    ("capitan01R/ComfyUI-Krea2T-Enhancer", False),
 ]
 
 # ComfyUI default install location
@@ -390,6 +391,7 @@ model_tasks = [
     ("diffusion_models", "Krea2_Turbo_fp8mixed.safetensors", "Winnougan/Krea-2-Base-Turbo-NVFP4-FP8-INT8", None),
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
+    ("vae", "krea2RealVae_v10.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2RealVae_v10.safetensors", None),
     ("loras/krea2", "realism_engine_krea2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2688234/3070702/realism_engine_krea2_v2.safetensors", None),
     ("loras/krea2", "MysticXXX_KREA2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2728644/3083062/MysticXXX_KREA2_v2.safetensors", None),
     ("loras/krea2", "krea2_nud3.safetensors", "https://huggingface.co/TechScribe42/krea/resolve/main/nsfw/krea2_nud3.safetensors", None),
@@ -403,9 +405,13 @@ model_tasks = [
     ("loras/krea2", "HMBreasts_krea2_epoch12.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2740401/3081828/HMBreasts_krea2_epoch12.safetensors", None),
     ("loras/krea2", "Krea2_NSFW_plus.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2742640/3084588/Krea2%20NSFW%2B.safetensors", None),
     ("loras/krea2", "krea2_macromastia_clothed.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2_macromastia_clothed.safetensors", None),
+    ("loras/krea2", "skc3vo.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/skc3vo.safetensors", None),
+    ("loras/krea2", "z0jglf.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/z0jglf.safetensors", None),
     ("loras/krea2", "krea2filterbypass3.safetensors", "https://huggingface.co/alienmafio/my-krea2-loras/resolve/main/krea2filterbypass3.safetensors", None),
     ("loras/krea2", "PornMaster_Krea2_Detail_Slider.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/PornMaster%20Krea2%20Detail%20Slider%20-%20Krea2%20-%20-1.5%20%2B1.safetensors", None),
     ("loras/krea2", "NSFW_Krea2_actions.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/NSFW%20-%20Krea2%20-%20Krea2%20-%20Asian%2Ccreampie%2Cdoggystyle%2Cebony%2Chairy%2Cmilf%2Creverse%20cowgirl%2Cshaved%2Cspreading%2Csuicide%20girls.safetensors", None),
+    ("loras/krea2", "snofs_krea_v1.safetensors", "https://huggingface.co/alienmafio/my-krea2-loras/resolve/main/snofs_krea_v1.safetensors", None),
+    ("loras/krea2", "KNPV4.1_pre.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/KNPV4.1_pre.safetensors", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)

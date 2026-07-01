@@ -1,3 +1,10 @@
+# 2026-07-01
+- done: додано 4 нові LoRAs (`skc3vo.safetensors`, `z0jglf.safetensors`, `snofs_krea_v1.safetensors`, `KNPV4.1_pre.safetensors`) для Krea 2 до `model_tasks` у `comfyui_app_l40s_krea2_turbo.py`.
+- done: додано кастомну ноду `capitan01R/ComfyUI-Krea2T-Enhancer` до `CUSTOM_NODE_REPOS` для покращення дотримання промпту.
+- done: додано новий VAE `krea2RealVae_v10.safetensors` до `model_tasks` у `comfyui_app_l40s_krea2_turbo.py`.
+- done: успішно перевірено синтаксис скрипта.
+- next: запуск comfyui_app_l40s_krea2_turbo.py на Modal для перевірки завантаження нових моделей та ноди.
+
 # 2026-06-30
 - done: додано ще 3 додаткові LoRAs (разом 16 нових LoRAs) для Krea 2 до `model_tasks` у `comfyui_app_l40s_krea2_turbo.py`.
 - done: оновлено версію LoRA `MysticXXX_KREA2_v1.safetensors` на `MysticXXX_KREA2_v2.safetensors` у `model_tasks`.
