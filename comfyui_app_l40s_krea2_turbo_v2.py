@@ -317,6 +317,30 @@ def sync_frontend_requirements(requirements_path: str):
         handle.write(current_hash)
 
 
+# v2: Heavy workflow template media packages (~430MB) cause 70+ global_subgraph
+# requests that block UI loading for minutes. Strip them after requirements install.
+STRIP_HEAVY_TEMPLATES = [
+    "comfyui-workflow-templates-media-api",
+    "comfyui-workflow-templates-media-image",
+    "comfyui-workflow-templates-media-other",
+    "comfyui-workflow-templates-media-video",
+    "comfyui-workflow-templates-media-assets-01",
+]
+
+
+def strip_workflow_template_media():
+    """Remove heavy workflow template packages to speed up frontend loading."""
+    print("Stripping heavy workflow template media packages...")
+    result = subprocess.run(
+        ["/usr/local/bin/python", "-m", "pip", "uninstall", "-y"] + STRIP_HEAVY_TEMPLATES,
+        capture_output=True, text=True,
+    )
+    if result.returncode == 0:
+        print("Stripped workflow template media packages successfully.")
+    else:
+        print(f"Strip result (non-fatal): {result.stderr.strip()}")
+
+
 def probe_runtime_dependencies():
     print(f"Runtime python: {sys.executable}")
     for package_name in ("blake3", "comfy-aimdo", "torch", "torchvision", "torchaudio"):
@@ -442,6 +466,7 @@ def ui():
     # v2: removed upgrade_runtime_tools_author_style() — pip/comfy-cli baked in image (~9s saved)
     # v2: replaced update_comfyui_frontend with hash-based sync (~23s saved)
     sync_frontend_requirements(os.path.join(DATA_BASE, "requirements.txt"))
+    strip_workflow_template_media()
     update_comfyui_manager_author_style()
     configure_comfyui_manager_author_style()
 
