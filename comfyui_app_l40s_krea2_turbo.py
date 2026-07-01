@@ -389,7 +389,6 @@ for repo, install_reqs in CUSTOM_NODE_REPOS:
 # Turbo inference reference: 8 steps, CFG 0.0, mu 1.15, 1024-2048px.
 model_tasks = [
     ("diffusion_models", "Krea2_Turbo_fp8mixed.safetensors", "Winnougan/Krea-2-Base-Turbo-NVFP4-FP8-INT8", None),
-    ("diffusion_models", "krea2_turbo_int8_convrot.safetensors", "Comfy-Org/Krea-2", "diffusion_models"),
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     ("vae", "krea2RealVae_v10.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2RealVae_v10.safetensors", None),
