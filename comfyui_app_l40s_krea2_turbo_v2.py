@@ -418,34 +418,44 @@ for repo, install_reqs in CUSTOM_NODE_REPOS:
 #   - Text encoder: Qwen3-VL 4B -> CLIPLoader with type "krea2".
 #   - VAE: qwen_image_vae (same VAE family as Anima).
 # Turbo inference reference: 8 steps, CFG 0.0, mu 1.15, 1024-2048px.
+#
+# Model tasks format:
+#   1. Using Hugging Face Hub (Preferred/Fastest via hf_transfer):
+#      ("subdir", "remote_filename", "repo_id", "subfolder" or None)
+#      Example: ("loras/krea2", "fedor_bypass.safetensors", "diobrando0/krea2_loras_public", None)
+#      If saving to a different local name, append 5th element:
+#      ("subdir", "remote_filename", "repo_id", "subfolder" or None, "local_filename")
+#
+#   2. Using direct URLs (Fallback for external/custom links starting with http):
+#      ("subdir", "local_filename", "https://example.com/file.safetensors", None)
 model_tasks = [
     ("diffusion_models", "Krea2_Turbo_fp8mixed.safetensors", "Winnougan/Krea-2-Base-Turbo-NVFP4-FP8-INT8", None),
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
-    ("vae", "krea2RealVae_v10.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2RealVae_v10.safetensors", None),
-    ("loras/krea2", "realism_engine_krea2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2688234/3070702/realism_engine_krea2_v2.safetensors", None),
-    ("loras/krea2", "MysticXXX_KREA2_v2.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2728644/3083062/MysticXXX_KREA2_v2.safetensors", None),
-    ("loras/krea2", "krea2_nud3.safetensors", "https://huggingface.co/TechScribe42/krea/resolve/main/nsfw/krea2_nud3.safetensors", None),
-    ("loras/krea2", "pytorch_lora_weights.safetensors", "https://huggingface.co/Beinsezii/Krea-2-Turbo-Projector-Scale-LoRA-Diffusers/resolve/main/pytorch_lora_weights.safetensors", None, "krea2_projector_scale.safetensors"),
-    ("loras/krea2", "Krea2-realism-V1.safetensors", "https://huggingface.co/adslkfsajlkj/krea2-realism/resolve/main/2728365/3066973/Krea2-realism-V1.safetensors", None),
-    ("loras/krea2", "KNPV3_1.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/KNPV3_1.safetensors", None),
-    ("loras/krea2", "galaxyace_krea2.safetensors", "https://huggingface.co/jjbRs/rs-imagen-models/resolve/main/loras/galaxyace_krea2.safetensors", None),
-    ("loras/krea2", "saggy-krea-turbo.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/1844246/3067822/saggy-krea-turbo.safetensors", None),
-    ("loras/krea2", "BreastSlider-KREA2.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/BreastSlider-KREA2.safetensors", None),
-    ("loras/krea2", "lenovo_krea2.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/lenovo_krea2.safetensors", None),
-    ("loras/krea2", "HMBreasts_krea2_epoch12.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2740401/3081828/HMBreasts_krea2_epoch12.safetensors", None),
-    ("loras/krea2", "Krea2_NSFW_plus.safetensors", "https://huggingface.co/Sentinel7/krea2/resolve/main/2742640/3084588/Krea2%20NSFW%2B.safetensors", None),
-    ("loras/krea2", "krea2_macromastia_clothed.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/krea2_macromastia_clothed.safetensors", None),
-    ("loras/krea2", "skc3vo.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/skc3vo.safetensors", None),
-    ("loras/krea2", "z0jglf.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/z0jglf.safetensors", None),
-    ("loras/krea2", "krea2filterbypass3.safetensors", "https://huggingface.co/alienmafio/my-krea2-loras/resolve/main/krea2filterbypass3.safetensors", None),
-    ("loras/krea2", "PornMaster_Krea2_Detail_Slider.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/PornMaster%20Krea2%20Detail%20Slider%20-%20Krea2%20-%20-1.5%20%2B1.safetensors", None),
-    ("loras/krea2", "NSFW_Krea2_actions.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/NSFW%20-%20Krea2%20-%20Krea2%20-%20Asian%2Ccreampie%2Cdoggystyle%2Cebony%2Chairy%2Cmilf%2Creverse%20cowgirl%2Cshaved%2Cspreading%2Csuicide%20girls.safetensors", None),
-    ("loras/krea2", "snofs_krea_v1.safetensors", "https://huggingface.co/alienmafio/my-krea2-loras/resolve/main/snofs_krea_v1.safetensors", None),
-    ("loras/krea2", "KNPV4.1_pre.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/KNPV4.1_pre.safetensors", None),
-    ("loras/krea2", "fedor_bypass.safetensors", "https://huggingface.co/diobrando0/krea2_loras_public/resolve/main/fedor_bypass.safetensors", None),
-    ("loras/krea2", "refiner_neuter_patch.safetensors", "https://huggingface.co/Hippotes/Krea-2-Experiments/resolve/main/refiner_neuter_patch.safetensors", None),
-    ("loras/krea2", "Krea2-realism-V2.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/Krea2-realism-V2.safetensors", None),
+    ("vae", "krea2RealVae_v10.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "realism_engine_krea2_v2.safetensors", "Sentinel7/krea2", "2688234/3070702"),
+    ("loras/krea2", "MysticXXX_KREA2_v2.safetensors", "Sentinel7/krea2", "2728644/3083062"),
+    ("loras/krea2", "krea2_nud3.safetensors", "TechScribe42/krea", "nsfw"),
+    ("loras/krea2", "pytorch_lora_weights.safetensors", "Beinsezii/Krea-2-Turbo-Projector-Scale-LoRA-Diffusers", None, "krea2_projector_scale.safetensors"),
+    ("loras/krea2", "Krea2-realism-V1.safetensors", "adslkfsajlkj/krea2-realism", "2728365/3066973"),
+    ("loras/krea2", "KNPV3_1.safetensors", "Kutches/Kr3a", None),
+    ("loras/krea2", "galaxyace_krea2.safetensors", "jjbRs/rs-imagen-models", "loras"),
+    ("loras/krea2", "saggy-krea-turbo.safetensors", "Sentinel7/krea2", "1844246/3067822"),
+    ("loras/krea2", "BreastSlider-KREA2.safetensors", "Kutches/Kr3a", None),
+    ("loras/krea2", "lenovo_krea2.safetensors", "Kutches/Kr3a", None),
+    ("loras/krea2", "HMBreasts_krea2_epoch12.safetensors", "Sentinel7/krea2", "2740401/3081828"),
+    ("loras/krea2", "Krea2 NSFW+.safetensors", "Sentinel7/krea2", "2742640/3084588", "Krea2_NSFW_plus.safetensors"),
+    ("loras/krea2", "krea2_macromastia_clothed.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "skc3vo.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "z0jglf.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "krea2filterbypass3.safetensors", "alienmafio/my-krea2-loras", None),
+    ("loras/krea2", "PornMaster Krea2 Detail Slider - Krea2 - -1.5 +1.safetensors", "EllaPriest45/Krea2_actions", None, "PornMaster_Krea2_Detail_Slider.safetensors"),
+    ("loras/krea2", "NSFW - Krea2 - Krea2 - Asian,creampie,doggystyle,ebony,hairy,milf,reverse cowgirl,shaved,spreading,suicide girls.safetensors", "EllaPriest45/Krea2_actions", None, "NSFW_Krea2_actions.safetensors"),
+    ("loras/krea2", "snofs_krea_v1.safetensors", "alienmafio/my-krea2-loras", None),
+    ("loras/krea2", "KNPV4.1_pre.safetensors", "Kutches/Kr3a", None),
+    ("loras/krea2", "fedor_bypass.safetensors", "diobrando0/krea2_loras_public", None),
+    ("loras/krea2", "refiner_neuter_patch.safetensors", "Hippotes/Krea-2-Experiments", None),
+    ("loras/krea2", "Krea2-realism-V2.safetensors", "andrewwe/kr2", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)

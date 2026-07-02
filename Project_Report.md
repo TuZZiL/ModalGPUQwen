@@ -1,6 +1,7 @@
 # 2026-07-02
 - done: оновлено `CUSTOM_NODE_REPOS` — замінено ноду на `TuZZiL/ComfyUI-ConditioningKrea2Rebalance` для Krea 2.
 - done: додано 3 нові LoRAs до `model_tasks` (`fedor_bypass.safetensors`, `refiner_neuter_patch.safetensors`, `Krea2-realism-V2.safetensors`).
+- done: оптимізовано завантаження моделей у `comfyui_app_l40s_krea2_turbo_v2.py` — всі посилання переведено з повільного `wget` на швидкий багатопотоковий `hf_hub_download` (hf_transfer).
 - done: створено `comfyui_app_l40s_krea2_turbo_v2.py` з оптимізаціями cold start (~35s економії):
   - видалено runtime pip/comfy-cli upgrade → baked в image (~9s)
   - замінено `update_comfyui_frontend` на `sync_frontend_requirements` з SHA256-кешем (~23s)
