@@ -1,3 +1,15 @@
+# 2026-07-02
+- done: оновлено `CUSTOM_NODE_REPOS` — замінено ноду на `TuZZiL/ComfyUI-ConditioningKrea2Rebalance` для Krea 2.
+- done: додано 3 нові LoRAs до `model_tasks` (`fedor_bypass.safetensors`, `refiner_neuter_patch.safetensors`, `Krea2-realism-V2.safetensors`).
+- done: створено `comfyui_app_l40s_krea2_turbo_v2.py` з оптимізаціями cold start (~35s економії):
+  - видалено runtime pip/comfy-cli upgrade → baked в image (~9s)
+  - замінено `update_comfyui_frontend` на `sync_frontend_requirements` з SHA256-кешем (~23s)
+  - зафіксовано frontend version `1.47.6` замість `@latest` (~1-2s)
+  - паралельні git pulls для custom nodes через ThreadPoolExecutor (~3-4s)
+- done: volume name `comfyui-krea2` не змінено — моделі не перекачуються.
+- done: pushed to git.
+- next: запуск v2 на Modal, порівняння часу cold start з v1.
+
 # 2026-07-01
 - done: додано 4 нові LoRAs (`skc3vo.safetensors`, `z0jglf.safetensors`, `snofs_krea_v1.safetensors`, `KNPV4.1_pre.safetensors`) для Krea 2 до `model_tasks` у `comfyui_app_l40s_krea2_turbo.py`.
 - done: додано кастомну ноду `capitan01R/ComfyUI-Krea2T-Enhancer` до `CUSTOM_NODE_REPOS` для покращення дотримання промпту.

@@ -142,6 +142,8 @@ qwen_model_tasks = [
     ("loras/FLUX9bKlein", "f2_klein9b_macromastia_clothed.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "klein_slider_anatomy.safetensors", "andrewwe/klein9bl", None),
     ("loras/FLUX9bKlein", "nipplediffusion-f2-klein-9b.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "NSFW-klein.safetensors", "andrewwe/klein9bl", None),
+    ("loras/FLUX9bKlein", "flux-object-remove-lora_comfy_converted.safetensors", "andrewwe/klein9bl", None),
 
     # Lightning LoRA models
     ("loras", "Qwen-Image-Lightning-4steps-V1.0.safetensors", "ModelTC/Qwen-Image-Lightning", None),

@@ -28,7 +28,7 @@ CUSTOM_NODE_REPOS = [
     ("Comfy-Org/ComfyUI-Manager", False),
     ("rgthree/rgthree-comfy", False),
     ("kijai/ComfyUI-KJNodes", True),
-    ("nova452/ComfyUI-ConditioningKrea2Rebalance", False),
+    ("TuZZiL/ComfyUI-ConditioningKrea2Rebalance", False),
     ("erosDiffusion/ComfyUI-EulerDiscreteScheduler", False),
     ("capitan01R/ComfyUI-Krea2T-Enhancer", False),
 ]
@@ -443,6 +443,9 @@ model_tasks = [
     ("loras/krea2", "NSFW_Krea2_actions.safetensors", "https://huggingface.co/EllaPriest45/Krea2_actions/resolve/main/NSFW%20-%20Krea2%20-%20Krea2%20-%20Asian%2Ccreampie%2Cdoggystyle%2Cebony%2Chairy%2Cmilf%2Creverse%20cowgirl%2Cshaved%2Cspreading%2Csuicide%20girls.safetensors", None),
     ("loras/krea2", "snofs_krea_v1.safetensors", "https://huggingface.co/alienmafio/my-krea2-loras/resolve/main/snofs_krea_v1.safetensors", None),
     ("loras/krea2", "KNPV4.1_pre.safetensors", "https://huggingface.co/Kutches/Kr3a/resolve/main/KNPV4.1_pre.safetensors", None),
+    ("loras/krea2", "fedor_bypass.safetensors", "https://huggingface.co/diobrando0/krea2_loras_public/resolve/main/fedor_bypass.safetensors", None),
+    ("loras/krea2", "refiner_neuter_patch.safetensors", "https://huggingface.co/Hippotes/Krea-2-Experiments/resolve/main/refiner_neuter_patch.safetensors", None),
+    ("loras/krea2", "Krea2-realism-V2.safetensors", "https://huggingface.co/andrewwe/kr2/resolve/main/Krea2-realism-V2.safetensors", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)

@@ -14,6 +14,7 @@
 | Файл | Призначення | GPU |
 |---|---|---|
 | `comfyui_app_l40s_flux2_klein9b_v4.py` | **ComfyUI + FLUX 2 Klein 9B** (основний стек, ~60 LoRA) | L40S |
+| `comfyui_app_l40s_krea2_turbo.py` | ComfyUI + **Krea 2 Turbo** (FP8, FLUX 2 arch; Qwen3-VL TE + qwen VAE) | L40S |
 | `comfyui_app_a100_v2.py` | ComfyUI (A100 версія) | A100 |
 | `comfyui_app_a100.py` | ComfyUI (A100, розширений набір нод та моделей) | L40S |
 | `comfyui_app_a10g.py` | ComfyUI (полегшена версія) | A10G |

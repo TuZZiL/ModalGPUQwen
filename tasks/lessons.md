@@ -11,3 +11,5 @@
 - A single missing custom-node dependency like `piexif` can be fixed directly in the build image even if the node itself is optional and ComfyUI still starts.
 - When borrowing upstream update logic, restore the whole update path coherently: backend, manager, frontend, and launch flags should move together or the flow becomes harder to reason about.
 - A `403 Forbidden` on `GET /` behind a reverse proxy is often a host/origin protection issue; `--enable-cors-header` is a targeted ComfyUI-side mitigation worth trying before changing proxy layers.
+- In this Modal + ComfyUI setup, the chain of blockers was independent: `comfy_aimdo`/`blake3` -> `torchvision::nms` stack mismatch -> missing `piexif` for `wlsh_nodes` -> reverse-proxy `403` on `/`. Fix them one by one instead of assuming a single root cause.
+- Known working access fix for this repo: [comfyui_app_l40s_flux2_klein9b_v4.py](F:\x_other_mat\AI_project\ModalGPUQwen\comfyui_modal\comfyui_app_l40s_flux2_klein9b_v4.py) with `--enable-cors-header` in the `comfy launch` args.
