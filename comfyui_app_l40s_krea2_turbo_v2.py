@@ -456,6 +456,9 @@ model_tasks = [
     ("loras/krea2", "fedor_bypass.safetensors", "diobrando0/krea2_loras_public", None),
     ("loras/krea2", "refiner_neuter_patch.safetensors", "Hippotes/Krea-2-Experiments", None),
     ("loras/krea2", "Krea2-realism-V2.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "HMCum_krea2_epoch30.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "RealisticSnapshotKrea2.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "impreal.safetensors", "andrewwe/kr2", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)

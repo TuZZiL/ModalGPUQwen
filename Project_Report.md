@@ -1,3 +1,7 @@
+# 2026-07-03
+- done: додано 3 нові LoRAs (`HMCum_krea2_epoch30.safetensors`, `RealisticSnapshotKrea2.safetensors`, `impreal.safetensors`) для Krea 2 до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: pushed to git.
+
 # 2026-07-02
 - done: оновлено `CUSTOM_NODE_REPOS` — замінено ноду на `TuZZiL/ComfyUI-ConditioningKrea2Rebalance` для Krea 2.
 - done: додано 3 нові LoRAs до `model_tasks` (`fedor_bypass.safetensors`, `refiner_neuter_patch.safetensors`, `Krea2-realism-V2.safetensors`).
