@@ -461,6 +461,7 @@ model_tasks = [
     ("loras/krea2", "RealisticSnapshotKrea2.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "impreal.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "krea2_realism_lora.safetensors", "bonticario/Krea-2-Realism-LoRA", None),
+    ("loras/krea2", "Better Pussy & Poses v3.0 - Krea2 - 1-1.5str,Reverse Cowgirl,missionary,doggy style,legs spread,hands around butt spreading genitals,pubic hair visible,hairless pussy,labia spread open,labia closed,close-up,full body.safetensors", "EllaPriest45/Krea2_actions", None, "Better_Pussy_Poses_v3.0_Krea2.safetensors"),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
