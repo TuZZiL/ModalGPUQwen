@@ -1,7 +1,10 @@
 # 2026-07-04
 - done: додано новий VAE (`vae_wan_2.1_vae.safetensors`) та LoRA (`krea2_realism_lora.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
 - done: додано нову LoRA (`Better_Pussy_Poses_v3.0_Krea2.safetensors` з очищеним іменем) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: додано diffusion model (`pornmasterKrea2_v1FP8.safetensors`) та LoRA (`Busty_KreaTurbo_v1-st3000.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
 - done: перевірено синтаксис скрипта.
+- done: pushed to git.
+
 
 
 # 2026-07-03

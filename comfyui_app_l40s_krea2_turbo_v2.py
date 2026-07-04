@@ -430,6 +430,7 @@ for repo, install_reqs in CUSTOM_NODE_REPOS:
 #      ("subdir", "local_filename", "https://example.com/file.safetensors", None)
 model_tasks = [
     ("diffusion_models", "Krea2_Turbo_fp8mixed.safetensors", "Winnougan/Krea-2-Base-Turbo-NVFP4-FP8-INT8", None),
+    ("diffusion_models", "pornmasterKrea2_v1FP8.safetensors", "andrewwe/kr2", None),
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     ("vae", "krea2RealVae_v10.safetensors", "andrewwe/kr2", None),
@@ -462,6 +463,7 @@ model_tasks = [
     ("loras/krea2", "impreal.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "krea2_realism_lora.safetensors", "bonticario/Krea-2-Realism-LoRA", None),
     ("loras/krea2", "Better Pussy & Poses v3.0 - Krea2 - 1-1.5str,Reverse Cowgirl,missionary,doggy style,legs spread,hands around butt spreading genitals,pubic hair visible,hairless pussy,labia spread open,labia closed,close-up,full body.safetensors", "EllaPriest45/Krea2_actions", None, "Better_Pussy_Poses_v3.0_Krea2.safetensors"),
+    ("loras/krea2", "Busty_KreaTurbo_v1-st3000.safetensors", "andrewwe/kr2", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
