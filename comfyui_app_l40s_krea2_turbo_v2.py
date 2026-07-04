@@ -433,6 +433,7 @@ model_tasks = [
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     ("vae", "krea2RealVae_v10.safetensors", "andrewwe/kr2", None),
+    ("vae", "vae_wan_2.1_vae.safetensors", "EllaPriest45/Krea2_base", None),
     ("loras/krea2", "realism_engine_krea2_v2.safetensors", "Sentinel7/krea2", "2688234/3070702"),
     ("loras/krea2", "MysticXXX_KREA2_v2.safetensors", "Sentinel7/krea2", "2728644/3083062"),
     ("loras/krea2", "krea2_nud3.safetensors", "TechScribe42/krea", "nsfw"),
@@ -459,6 +460,7 @@ model_tasks = [
     ("loras/krea2", "HMCum_krea2_epoch30.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "RealisticSnapshotKrea2.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "impreal.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "krea2_realism_lora.safetensors", "bonticario/Krea-2-Realism-LoRA", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
