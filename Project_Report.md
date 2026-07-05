@@ -1,3 +1,9 @@
+# 2026-07-05
+- done: додано дві нові LoRA (`Penis_KreaTurbo_v1-st3000.safetensors` та `Penis_KreaTurbo_v1-st5000.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: перевірено синтаксис скрипта.
+- next: pushed to git.
+
+
 # 2026-07-04
 - done: додано новий VAE (`vae_wan_2.1_vae.safetensors`) та LoRA (`krea2_realism_lora.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
 - done: додано нову LoRA (`Better_Pussy_Poses_v3.0_Krea2.safetensors` з очищеним іменем) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
