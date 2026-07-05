@@ -1,7 +1,7 @@
 # 2026-07-05
 - done: додано дві нові LoRA (`Penis_KreaTurbo_v1-st3000.safetensors` та `Penis_KreaTurbo_v1-st5000.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
 - done: перевірено синтаксис скрипта.
-- next: pushed to git.
+- done: pushed to git.
 
 
 # 2026-07-04
