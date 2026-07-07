@@ -1,3 +1,8 @@
+# 2026-07-07
+- done: додано дві нові LoRA (`snofs_krea_v1_1.safetensors` та `PornMaster_Krea2_Realism_slider_V1.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: перевірено синтаксис скрипта.
+- done: pushed to git.
+
 # 2026-07-06
 - done: додано дві нові LoRA (`gab1car_Gabbie_v1_c1-st2000.safetensors` та `gab1car_Gabbie_v1_c1-st3000.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
 - done: перевірено синтаксис скрипта.
