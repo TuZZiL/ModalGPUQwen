@@ -472,6 +472,8 @@ model_tasks = [
     ("loras/krea2", "PornMaster_Krea2_Realism_slider_V1.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "Vintage_B_v1_c1-st5000.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "beautifulwoman_krea_c1-st2000.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "ChrisHend_v1_c1-st4000.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "ChrisHend_v1_c1-st5000.safetensors", "andrewwe/kr2", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
