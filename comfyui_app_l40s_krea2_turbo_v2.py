@@ -562,6 +562,7 @@ def ui():
         "--port",
         "8000",
         "--enable-cors-header",
+        "--enable-manager",
         "--front-end-version",
         "Comfy-Org/ComfyUI_frontend@1.47.6",
     ]

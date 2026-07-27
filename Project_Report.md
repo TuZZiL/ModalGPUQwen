@@ -1,4 +1,5 @@
 # 2026-07-27
+- fixed: ComfyUI Manager не відображався в UI — додано `--enable-manager` до launch cmd (потрібен в нових версіях ComfyUI).
 - done: оновлено джерело `snofs_krea_v1_1.safetensors` на `canon12341/tester`.
 - done: оновлено LoRA `MysticXXX_KREA2_v2.safetensors` до `MysticXXX_KREA2_v3.safetensors` (`k2loras/krea2-lora-archive`).
 - done: додано 4 нові LoRA до `model_tasks`: `PornMaster_Uncensored_Krea2_V1.safetensors`, `BlovJbl4j.safetensors`, `phone_photography_2025_krea2.safetensors`, `CodiVore.safetensors`.
