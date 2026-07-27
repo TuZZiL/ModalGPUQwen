@@ -564,7 +564,7 @@ def ui():
         "--enable-cors-header",
         "--enable-manager",
         "--front-end-version",
-        "Comfy-Org/ComfyUI_frontend@1.47.6",
+        "Comfy-Org/ComfyUI_frontend@1.47.10",
     ]
     print(f"Executing: {' '.join(cmd)}")
 
