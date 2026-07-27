@@ -430,13 +430,13 @@ for repo, install_reqs in CUSTOM_NODE_REPOS:
 #      ("subdir", "local_filename", "https://example.com/file.safetensors", None)
 model_tasks = [
     ("diffusion_models", "Krea2_Turbo_fp8mixed.safetensors", "Winnougan/Krea-2-Base-Turbo-NVFP4-FP8-INT8", None),
-    ("diffusion_models", "pornmasterKrea2_v1FP8.safetensors", "andrewwe/kr2", None),
+    ("diffusion_models", "krea2_turbo_int8_convrot.safetensors", "Comfy-Org/Krea-2", "diffusion_models"),
     ("text_encoders", "qwen3vl_4b_fp8_scaled.safetensors", "Comfy-Org/Qwen3-VL", "text_encoders"),
     ("vae", "qwen_image_vae.safetensors", "Comfy-Org/Qwen-Image_ComfyUI", "split_files/vae"),
     ("vae", "krea2RealVae_v10.safetensors", "andrewwe/kr2", None),
     ("vae", "vae_wan_2.1_vae.safetensors", "EllaPriest45/Krea2_base", None),
     ("loras/krea2", "realism_engine_krea2_v2.safetensors", "Sentinel7/krea2", "2688234/3070702"),
-    ("loras/krea2", "MysticXXX_KREA2_v2.safetensors", "Sentinel7/krea2", "2728644/3083062"),
+    ("loras/krea2", "MysticXXX_KREA2_v3.safetensors", "k2loras/krea2-lora-archive", "2026-07-10/Krea-2/2728644_KREA-2--Mystic-XXX/3116175"),
     ("loras/krea2", "krea2_nud3.safetensors", "TechScribe42/krea", "nsfw"),
     ("loras/krea2", "pytorch_lora_weights.safetensors", "Beinsezii/Krea-2-Turbo-Projector-Scale-LoRA-Diffusers", None, "krea2_projector_scale.safetensors"),
     ("loras/krea2", "Krea2-realism-V1.safetensors", "adslkfsajlkj/krea2-realism", "2728365/3066973"),
@@ -463,17 +463,18 @@ model_tasks = [
     ("loras/krea2", "impreal.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "krea2_realism_lora.safetensors", "bonticario/Krea-2-Realism-LoRA", None),
     ("loras/krea2", "Better Pussy & Poses v3.0 - Krea2 - 1-1.5str,Reverse Cowgirl,missionary,doggy style,legs spread,hands around butt spreading genitals,pubic hair visible,hairless pussy,labia spread open,labia closed,close-up,full body.safetensors", "EllaPriest45/Krea2_actions", None, "Better_Pussy_Poses_v3.0_Krea2.safetensors"),
-    ("loras/krea2", "Busty_KreaTurbo_v1-st3000.safetensors", "andrewwe/kr2", None),
-    ("loras/krea2", "Penis_KreaTurbo_v1-st3000.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "Penis_KreaTurbo_v1-st5000.safetensors", "andrewwe/kr2", None),
-    ("loras/krea2", "gab1car_Gabbie_v1_c1-st2000.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "gab1car_Gabbie_v1_c1-st3000.safetensors", "andrewwe/kr2", None),
-    ("loras/krea2", "snofs_krea_v1_1.safetensors", "Sentinel7/krea2", "1972981/3104629"),
+    ("loras/krea2", "snofs_krea_v1_1.safetensors", "canon12341/tester", None),
     ("loras/krea2", "PornMaster_Krea2_Realism_slider_V1.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "Vintage_B_v1_c1-st5000.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "beautifulwoman_krea_c1-st2000.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "ChrisHend_v1_c1-st4000.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "ChrisHend_v1_c1-st5000.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "PornMaster_Uncensored_Krea2_V1.safetensors", "Kutches/Kr3a", None),
+    ("loras/krea2", "BlovJbl4j.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "phone_photography_2025_krea2.safetensors", "Epyan/Kr", None),
+    ("loras/krea2", "CodiVore.safetensors", "andrewwe/kr2", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)

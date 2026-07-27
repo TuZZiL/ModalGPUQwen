@@ -1,3 +1,22 @@
+# 2026-07-27
+- done: оновлено джерело `snofs_krea_v1_1.safetensors` на `canon12341/tester`.
+- done: оновлено LoRA `MysticXXX_KREA2_v2.safetensors` до `MysticXXX_KREA2_v3.safetensors` (`k2loras/krea2-lora-archive`).
+- done: додано 4 нові LoRA до `model_tasks`: `PornMaster_Uncensored_Krea2_V1.safetensors`, `BlovJbl4j.safetensors`, `phone_photography_2025_krea2.safetensors`, `CodiVore.safetensors`.
+- done: перевірено синтаксис скрипта `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: pushed to git.
+
+# 2026-07-22
+- done: створено скрипт `quick_download_quickpod_codex_v2.sh` у папці `quickpod/Krea2/scripts/` на основі моделей та custom nodes з `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: замінено diffusion модель `pornmasterKrea2_v1FP8.safetensors` на `krea2_turbo_int8_convrot.safetensors` з `Comfy-Org/Krea-2` (subfolder: `diffusion_models`) у `comfyui_app_l40s_krea2_turbo_v2.py` та в QuickPod-скрипті.
+- done: підтримано 5-елементні кортежі моделей (для кастомних локальних імен файлів LoRA).
+- fixed: виправлено конфлікт залежностей `torch 2.11.0` (обмежено `setuptools<82`).
+- fixed: QuickPod клонує ComfyUI з tag-pinned refspec (`+refs/tags/v0.14.2:...`), що блокує fetch гілок. Додано автоматичне виправлення refspec на `+refs/heads/*:refs/remotes/origin/*` + prune stale refs + верифікацію кожного кандидатного ref через `show-ref --verify`.
+- fixed: виправлено помилку перевірки розміру файлу (`MIN_VALID_SIZE_BYTES` знижено з 1MB до 100 байт), оскільки файл `krea2_projector_scale.safetensors` є легітимною мікро-LoRA розміром 268 байт.
+- done: вилучено обов'язкову перевірку вільного місця (`ensure_free_space`) при старті скрипта.
+- done: додано автоматичне встановлення та оновлення `diffusers` у `install_base_python_tools()` та увімкнено встановлення `requirements.txt` для `ComfyUI-EulerDiscreteScheduler`.
+- done: перевірено синтаксис вбудованого Python-downloader.
+- next: запуск скрипта в QuickPod середовищі для завантаження моделей Krea 2.
+
 # 2026-07-10
 - done: додано дві нові LoRA (`ChrisHend_v1_c1-st4000.safetensors` та `ChrisHend_v1_c1-st5000.safetensors`) до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
 - done: перевірено синтаксис скрипта.
