@@ -502,6 +502,16 @@ def ui():
     update_comfyui_manager_author_style()
     configure_comfyui_manager_author_style()
 
+    # Uninstall pip-installed comfyui-manager so the git-cloned version in
+    # custom_nodes/ is not "Blocked by policy".  The pip package provides
+    # backend middleware but its frontend JS (Manager button) is missing,
+    # while the git clone ships both.
+    print("Removing pip-installed comfyui-manager to avoid policy block...")
+    subprocess.run(
+        ["/usr/local/bin/python", "-m", "pip", "uninstall", "-y", "comfyui-manager"],
+        capture_output=True, text=True,
+    )
+
     try:
         sync_custom_node_repos()
     except Exception as e:
