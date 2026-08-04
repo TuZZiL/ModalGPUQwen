@@ -1,3 +1,7 @@
+# 2026-08-04
+- done: додано 2 нові LoRA (`sks_krnltk_c1-st3000.safetensors` та `sks_krnltk_c1-st4000.safetensors`) з репозиторію `andrewwe/kr2` до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
+- done: перевірено синтаксис скрипта.
+
 # 2026-07-27
 - fixed: ComfyUI Manager не відображався в UI — додано `--enable-manager` до launch cmd (потрібен в нових версіях ComfyUI).
 - done: оновлено джерело `snofs_krea_v1_1.safetensors` на `canon12341/tester`.

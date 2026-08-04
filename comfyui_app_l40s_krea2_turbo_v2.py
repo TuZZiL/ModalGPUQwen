@@ -475,6 +475,8 @@ model_tasks = [
     ("loras/krea2", "BlovJbl4j.safetensors", "andrewwe/kr2", None),
     ("loras/krea2", "phone_photography_2025_krea2.safetensors", "Epyan/Kr", None),
     ("loras/krea2", "CodiVore.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "sks_krnltk_c1-st3000.safetensors", "andrewwe/kr2", None),
+    ("loras/krea2", "sks_krnltk_c1-st4000.safetensors", "andrewwe/kr2", None),
 ]
 
 # Create volume (dedicated to the Krea 2 stack to keep it isolated from the klein9b volume)
