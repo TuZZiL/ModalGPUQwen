@@ -101,16 +101,7 @@ def update_comfyui_manager_author_style():
     manager_dir = os.path.join(CUSTOM_NODES_DIR, "ComfyUI-Manager")
     if os.path.exists(manager_dir):
         print("Updating ComfyUI-Manager to the latest version...")
-        os.chdir(manager_dir)
-        try:
-            subprocess.run("git config pull.ff only", shell=True, check=True, capture_output=True, text=True)
-            result = subprocess.run("git pull --ff-only", shell=True, check=True, capture_output=True, text=True)
-            print("ComfyUI-Manager git pull output:", result.stdout)
-        except subprocess.CalledProcessError as e:
-            print(f"Error updating ComfyUI-Manager: {e.stderr}")
-        except Exception as e:
-            print(f"Unexpected error during ComfyUI-Manager update: {e}")
-        os.chdir(DATA_BASE)
+        update_git_repo(manager_dir, "ComfyUI-Manager")
     else:
         print("ComfyUI-Manager directory not found, installing...")
         try:
@@ -207,6 +198,7 @@ def update_git_repo(repo_dir: str, label: str):
         print(f"Skipping {label} update: {repo_dir} is not a git repository.")
         return
 
+    run_shell("git fetch origin", cwd=repo_dir, check=False)
     branch = detect_remote_branch(repo_dir)
     if not branch:
         print(f"Skipping {label} update: could not determine remote branch for origin.")
@@ -232,8 +224,13 @@ def update_git_repo(repo_dir: str, label: str):
         print(f"{label} git pull output: {output}")
         return
 
-    details = pull.stderr.strip() or pull.stdout.strip()
-    print(f"Error updating {label}: {details}")
+    # Fallback to hard reset if working directory has local modifications
+    print(f"{label} git pull failed ({pull.stderr.strip()}), performing hard reset to origin/{branch}...")
+    reset = run_shell(f"git reset --hard origin/{branch}", cwd=repo_dir, check=False)
+    if reset.returncode == 0:
+        print(f"{label} hard reset output: {reset.stdout.strip()}")
+    else:
+        print(f"Error updating {label}: {reset.stderr.strip()}")
 
 
 def sync_custom_node_repos():
