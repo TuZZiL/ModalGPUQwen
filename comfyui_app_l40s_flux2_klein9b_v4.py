@@ -307,11 +307,25 @@ def sync_frontend_requirements(requirements_path: str):
 
 def probe_runtime_dependencies():
     print(f"Runtime python: {sys.executable}")
-    for package_name in ("blake3", "comfy-aimdo", "torch", "torchvision", "torchaudio"):
+    for package_name in ("blake3", "comfy-aimdo", "comfy-kitchen", "torch", "torchvision", "torchaudio"):
         try:
             print(f"Runtime package: {package_name}={version(package_name)}")
         except PackageNotFoundError:
             print(f"Runtime package: {package_name}=MISSING")
+
+
+def ensure_comfy_kitchen_upgraded():
+    print("Ensuring comfy-kitchen and comfy-aimdo are up to date for latest ComfyUI backend...")
+    try:
+        result = subprocess.run(
+            ["/usr/local/bin/python", "-m", "pip", "install", "--upgrade", "comfy-kitchen", "comfy-aimdo"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        print("comfy-kitchen upgrade output:", result.stdout)
+    except Exception as e:
+        print(f"Warning: Failed to upgrade comfy-kitchen/comfy-aimdo: {e}")
 
 def download_model(subdir: str, filename: str, primary_source: dict, backup_source: Optional[dict] = None, local_filename: Optional[str] = None):
     target_dir = os.path.join(MODELS_DIR, subdir)
@@ -360,7 +374,7 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git", "wget", "libgl1-mesa-glx", "libglib2.0-0", "ffmpeg", "imagemagick", "libmagickwand-dev")
     # 👇 ВИПРАВЛЕННЯ: Додано необхідні бібліотеки для кастомних нод
-    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf", "blake3", "comfy-aimdo", "piexif")
+    .pip_install("psd-tools", "PyWavelets", "tiktoken", "Wand", "gguf", "diffusers", "peft", "rotary_embedding_torch", "omegaconf", "blake3", "comfy-aimdo", "comfy-kitchen", "piexif")
     .run_commands([
         "pip install --upgrade pip",
         "pip install --no-cache-dir --force-reinstall --index-url https://download.pytorch.org/whl/cu126 torch==2.11.0 torchvision==0.26.0 torchaudio==2.11.0",
@@ -471,6 +485,7 @@ def ui():
     ensure_comfyui_on_volume()
 
     update_comfyui_backend_author_style()
+    ensure_comfy_kitchen_upgraded()
     upgrade_runtime_tools_author_style()
     update_comfyui_frontend_author_style()
     update_comfyui_manager_author_style()

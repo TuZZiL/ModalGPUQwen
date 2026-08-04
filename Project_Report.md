@@ -1,6 +1,7 @@
 # 2026-08-04
 - done: додано 2 нові LoRA (`sks_krnltk_c1-st3000.safetensors` та `sks_krnltk_c1-st4000.safetensors`) з репозиторію `andrewwe/kr2` до `model_tasks` у `comfyui_app_l40s_krea2_turbo_v2.py`.
-- done: перевірено синтаксис скрипта.
+- fixed: виправлено помилку `AttributeError: 'NoneType' object has no attribute 'Params'` при виконанні CLIPLoader. Причина — після `git pull` бэкенд ComfyUI оновився (v0.30.0+) і вимагав новий layout `TensorCoreConvRotW4A4Layout` з `comfy-kitchen`, але в оточенні стояла стара версія `comfy-kitchen 0.2.16`. Додано функцію `ensure_comfy_kitchen_upgraded()`, що оновлює `comfy-kitchen` та `comfy-aimdo` при старті Modal.
+- done: перевірено синтаксис скриптів.
 
 # 2026-07-27
 - fixed: ComfyUI Manager не відображався в UI — додано `--enable-manager` до launch cmd (потрібен в нових версіях ComfyUI).
