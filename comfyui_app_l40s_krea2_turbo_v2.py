@@ -576,7 +576,9 @@ def ui():
     # Launch ComfyUI from volume location
     print(f"Starting ComfyUI from {DATA_BASE} on {GPU_TYPE} with {BASE_MODEL_NAME} support...")
 
-    # v2: pinned frontend version to avoid GitHub HTTP lookup (~1-2s saved)
+    # v2: let ComfyUI use the version-matched frontend from comfyui-frontend-package
+    # (installed via sync_frontend_requirements). Avoids GitHub lookup and ensures
+    # frontend/backend WebSocket protocol compatibility for progress display.
     cmd = [
         "comfy",
         "launch",
@@ -587,8 +589,6 @@ def ui():
         "8000",
         "--enable-cors-header",
         "--enable-manager",
-        "--front-end-version",
-        "Comfy-Org/ComfyUI_frontend@latest",
     ]
     print(f"Executing: {' '.join(cmd)}")
 
